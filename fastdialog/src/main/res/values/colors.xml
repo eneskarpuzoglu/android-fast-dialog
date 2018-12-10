@@ -4,9 +4,10 @@
     <color name="colorPrimaryLight">#FFECB3</color>
     <color name="colorPrimary">#FFD107</color>
     <color name="colorTextIcon">#FFFFFF</color>
-    <color name="colorAccent">#607D8B</color>
+    <color name="colorAccent">#B33A3A</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#FFFFFF</color>
     <color name="colorDivider">#BDBDBD</color>
+    <color name="transparent">#00000000</color>
 
 </resources>
