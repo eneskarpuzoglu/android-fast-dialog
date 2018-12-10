@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">FastDialog</string>
+    <string name="warning">Warning</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="please_wait">Please wait!</string>
+</resources>
