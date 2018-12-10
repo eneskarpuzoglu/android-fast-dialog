@@ -5,7 +5,7 @@ Provides you easily create various pop-up dialogs that you can use.
 
 [![](https://jitpack.io/v/eneskarpuzoglu/android-fast-dialog.svg)](https://jitpack.io/#eneskarpuzoglu/android-fast-dialog)
 
-##Installation
+## Installation
 
 ### Step 1. Add the JitPack repository to your build file
 
@@ -19,7 +19,7 @@ Provides you easily create various pop-up dialogs that you can use.
 		}
 	}
 ```
-###Step 2. Add the dependency
+### Step 2. Add the dependency
 
 ```gradle
 	dependencies {
@@ -27,7 +27,7 @@ Provides you easily create various pop-up dialogs that you can use.
 	}
 ```
 
-##How to use
+## How to use
 
 > Create `FastDialog` use to `FastDialogBuilder`
 ```java
@@ -66,24 +66,14 @@ Provides you easily create various pop-up dialogs that you can use.
 	 create() // create fast-dialog
 ```
 
-##Examples
+## Examples
 > Simple Progress Dialog
 ```java
 	FastDialog dialog = new FastDialogBuilder(this)
 			.progressDialog("Please Wait!").create();
 	dialog.show();
 ```
-![GIF](https://imgur.com/a/yVET4OW)
-
-> Simple Warning Dialog
-```java
-	FastDialog dialog = new FastDialogBuilder(this)
-			.setText("Warning")
-			.withIcon()
-			.create();
-	dialog.show();
-```
-[![INSERT YOUR GRAPHIC HERE](https://imgur.com/a/rQ2h5HB)]()
+![Fast Progress Dialog](images/progress.gif)
 
 >  Warning Dialog
 ```java
@@ -93,7 +83,7 @@ Provides you easily create various pop-up dialogs that you can use.
 			.create();
 	dialog.show();
 ```
-[![INSERT YOUR GRAPHIC HERE](https://imgur.com/a/rQ2h5HB)]()
+![Fast Warning Dialog](images/warning.png)
 
 >  Warning Dialog with EditText
 ```java
@@ -106,7 +96,7 @@ Provides you easily create various pop-up dialogs that you can use.
 			.create();
 	dialog.show();
 ```
-[![INSERT YOUR GRAPHIC HERE](https://imgur.com/a/LgJEyS0)]()
+![Fast Warning EditText Dialog](images/warning2.png)
 
 >  Warning Dialog position bottom, slide bottom animation and listener possitive button
 ```java
@@ -128,7 +118,7 @@ Provides you easily create various pop-up dialogs that you can use.
                 .create();
         dialog.show();
 ```
-[![INSERT YOUR GRAPHIC HERE](https://imgur.com/a/9tj2ToE)]()
+![Fast Bottom Dialog](images/bottom.gif)
 
 ## License
 
