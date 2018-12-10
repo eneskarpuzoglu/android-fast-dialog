@@ -94,9 +94,9 @@ public class FastDialogBuilder {
         if (position == Positions.CENTER){
             dialog.getWindow().setGravity(Gravity.CENTER);
         }else if (position == Positions.LEFT){
-            dialog.getWindow().setGravity(Gravity.LEFT);
+            dialog.getWindow().setGravity(Gravity.START);
         }else if (position == Positions.RIGHT){
-            dialog.getWindow().setGravity(Gravity.RIGHT);
+            dialog.getWindow().setGravity(Gravity.END);
         }else if (position == Positions.TOP){
             dialog.getWindow().setGravity(Gravity.TOP);
         }else if (position == Positions.BOTTOM){
@@ -132,10 +132,6 @@ public class FastDialogBuilder {
     public FastDialogBuilder possitiveText(String possitive){
         btOk.setVisibility(View.VISIBLE);
         btOk.setText(possitive);
-        return this;
-    }
-    public FastDialogBuilder setCancelable(Boolean bool){
-        dialog.setCancelable(bool);
         return this;
     }
     public FastDialogBuilder decimalEditText(boolean bool){
