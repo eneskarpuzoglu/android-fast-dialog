@@ -46,7 +46,7 @@ Provides you easily create various pop-up dialogs that you can use.
 	 decimalEditText(boolean bool) // set EditText to decimalEditText
 	 possitiveClickListener(PossitiveClick click) // set listener to possitive button
 	 negativeClickListener(NegativeClick click) // set listener to negative button
-	 
+	 changeColor(int colorButtonsAndTitle,int colorButtonsAndTitleText,int colorPrimaryText) // change fast-dialog colors
 		//Animations
 	 setAnimation(Animations animation)
 		// Animations.SLIDE_LEFT
@@ -85,18 +85,21 @@ Provides you easily create various pop-up dialogs that you can use.
 ```
 <img width="300px" src="images/warning.png" align="center"/>
 
->  Warning Dialog with EditText
+>  Warning Dialog position center, grown in animation and changed colors
 ```java
 	FastDialog dialog = new FastDialogBuilder(this)
-			.setTitle("Warning")
-			.setText("Warning Text")
-			.setHint("please enter text")
-			.setAnimation(Animations.GROW_IN)
-			.negativeText("Cancel")
-			.create();
-	dialog.show();
+                .setTitle("Warning")
+                .setText("Warning Text")
+                .changeColor(ContextCompat.getColor(getApplicationContext(),R.color.colorAccent),
+                        ContextCompat.getColor(getApplicationContext(),R.color.colorSecondaryText),
+                        ContextCompat.getColor(getApplicationContext(),R.color.colorPrimaryText))
+                .setHint("please enter text")
+                .setAnimation(Animations.GROW_IN)
+                .negativeText("Cancel")
+                .create();
+        dialog.show();
 ```
-<img width="300px" src="images/warning2.png" align="center"/>
+<img width="300px" src="images/color_dialog.gif" align="center"/>
 
 >  Warning Dialog position bottom, slide bottom animation and listener possitive button
 ```java
