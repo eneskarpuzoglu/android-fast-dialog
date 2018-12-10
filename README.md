@@ -73,7 +73,7 @@ Provides you easily create various pop-up dialogs that you can use.
 			.progressDialog("Please Wait!").create();
 	dialog.show();
 ```
-<img width="100px" src="images/progress.gif" align="center"/>
+<img width="300px" src="images/progress.gif" align="center"/>
 
 >  Warning Dialog
 ```java
@@ -83,7 +83,7 @@ Provides you easily create various pop-up dialogs that you can use.
 			.create();
 	dialog.show();
 ```
-![Fast Warning Dialog](images/warning.png| width=100)
+<img width="300px" src="images/warning.png" align="center"/>
 
 >  Warning Dialog with EditText
 ```java
@@ -96,7 +96,7 @@ Provides you easily create various pop-up dialogs that you can use.
 			.create();
 	dialog.show();
 ```
-![Fast Warning EditText Dialog](images/warning2.png| width=100)
+<img width="300px" src="images/warning2.png" align="center"/>
 
 >  Warning Dialog position bottom, slide bottom animation and listener possitive button
 ```java
@@ -118,7 +118,7 @@ Provides you easily create various pop-up dialogs that you can use.
                 .create();
         dialog.show();
 ```
-![Fast Bottom Dialog](images/bottom_dialog.gif| width=100)
+<img width="300px" src="images/bottom_dialog.gif" align="center"/>
 
 ## License
 
