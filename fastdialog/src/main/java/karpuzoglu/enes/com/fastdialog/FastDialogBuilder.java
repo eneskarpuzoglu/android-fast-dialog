@@ -30,6 +30,7 @@ public class FastDialogBuilder {
     private Button btOk;
     private PositiveClick positiveClick;
     private NegativeClick negativeClick;
+    private boolean isDecimal = false;
 
 
     public FastDialogBuilder(@NonNull Context context,@NonNull Type dialogType){
@@ -201,6 +202,7 @@ public class FastDialogBuilder {
     public FastDialogBuilder decimalEditText(){
         etWarning.setVisibility(View.GONE);
         etWarningDecimal.setVisibility(View.VISIBLE);
+        isDecimal = true;
         return this;
     }
     public void positiveClickListener(PositiveClick click){
@@ -213,6 +215,18 @@ public class FastDialogBuilder {
     }
     public FastDialogBuilder cancelable(boolean bool){
         dialog.setCancelable(bool);
+        return this;
+    }
+    public FastDialogBuilder setInputText(String str){
+        if (!isDecimal){
+            etWarning.setText(str);
+            etWarning.setSelection(etWarning.getText().length());
+        }
+        else{
+            etWarningDecimal.setText(str);
+            etWarningDecimal.setSelection(etWarningDecimal.getText().length());
+        }
+
         return this;
     }
     public FastDialog create(){

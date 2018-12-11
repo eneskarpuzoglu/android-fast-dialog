@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
                 .setAnimation(Animations.FADE_IN)
                 .positiveText("Ok")
                 .negativeText("Cancel")
+                .setInputText("55")
+                .cancelable(false)
                 .create()
                 .show();
     }
