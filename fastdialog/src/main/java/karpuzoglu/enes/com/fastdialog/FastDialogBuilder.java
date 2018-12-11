@@ -2,6 +2,7 @@ package karpuzoglu.enes.com.fastdialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -30,6 +31,7 @@ public class FastDialogBuilder {
     private Button btOk;
     private PositiveClick positiveClick;
     private NegativeClick negativeClick;
+    private DismissListener dismissListener;
     private boolean isDecimal = false;
 
 
@@ -212,6 +214,14 @@ public class FastDialogBuilder {
     public void negativeClickListener(NegativeClick click){
         btCancel.setVisibility(View.VISIBLE);
         negativeClick = click;
+    }
+    public void setDismissListener(final DismissListener dismissListener){
+        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                dismissListener.onDismiss(dialog);
+            }
+        });
     }
     public FastDialogBuilder cancelable(boolean bool){
         dialog.setCancelable(bool);

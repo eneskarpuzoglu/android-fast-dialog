@@ -76,6 +76,7 @@ Provides you easily create various pop-up dialogs that you can use.
 	p(this) // create progress dialog
 	positiveClickListener(PositiveClick click) // set listener to positive button
 	negativeClickListener(NegativeClick click) // set listener to negative button	
+	dismissListener(DismissListener dismissListener) // set dismiss listener to fast-dialog
 	show() //show dialog
 	dismiss() //dismiss dialog
 	getInputText() // get dialog EditText's text

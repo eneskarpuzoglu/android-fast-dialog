@@ -55,4 +55,5 @@ public class FastDialog{
     public void negativeClickListener(NegativeClick click){
         builder.negativeClickListener(click);
     }
+    public void dismissListener(DismissListener dismissListener){builder.setDismissListener(dismissListener);}
 }

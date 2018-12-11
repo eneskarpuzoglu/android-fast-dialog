@@ -1,5 +1,6 @@
 package ka.enes.com.sample;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import karpuzoglu.enes.com.fastdialog.Animations;
+import karpuzoglu.enes.com.fastdialog.DismissListener;
 import karpuzoglu.enes.com.fastdialog.FastDialog;
 import karpuzoglu.enes.com.fastdialog.FastDialogBuilder;
 import karpuzoglu.enes.com.fastdialog.Positions;
@@ -69,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
                 .setTitleText("Information")
                 .setText("Information Text")
                 .positiveText("Ok")
-                .negativeText("Cancel")
                 .setAnimation(Animations.SLIDE_BOTTOM)
                 .setPosition(Positions.BOTTOM)
                 .create();
@@ -78,6 +79,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this,"Ok Pressed",Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
+            }
+        });
+        dialog.dismissListener(new DismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                FastDialog.i(MainActivity.this).setText("Closed").create().show();
             }
         });
         dialog.show();
