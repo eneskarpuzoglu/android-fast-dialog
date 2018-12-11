@@ -3,6 +3,7 @@
     <string name="warning">Warning</string>
     <string name="error">Error</string>
     <string name="info">Info</string>
+    <string name="dialog">Dialog</string>
     <string name="no">No</string>
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>

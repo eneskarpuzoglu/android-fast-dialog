@@ -1,54 +1,45 @@
 package karpuzoglu.enes.com.fastdialog;
 
-import android.app.Dialog;
 import android.content.Context;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 /**
  * Created by ENES on 7.12.2018.
  */
 public class FastDialog{
-    private static Dialog dialog;
+    private FastDialogBuilder builder;
 
-    public FastDialog(FastDialogBuilder builder) {
-        dialog = builder.getDialog();
+    FastDialog(FastDialogBuilder builder) {
+        this.builder = builder;
     }
 
     public static FastDialogBuilder i(Context context){
-        FastDialogBuilder dialogBuilder = new FastDialogBuilder(context,0);
-        dialog = dialogBuilder.getDialog();
-        return dialogBuilder;
+        return new FastDialogBuilder(context,Type.INFO);
     }
     public static FastDialogBuilder e(Context context){
-        FastDialogBuilder dialogBuilder = new FastDialogBuilder(context,1);
-        dialog = dialogBuilder.getDialog();
-        return dialogBuilder;
+        return new FastDialogBuilder(context,Type.ERROR);
     }
     public static FastDialogBuilder w(Context context){
-        FastDialogBuilder dialogBuilder = new FastDialogBuilder(context,2);
-        dialog = dialogBuilder.getDialog();
-        return dialogBuilder;
+        return new FastDialogBuilder(context,Type.WARNING);
     }
     public static FastDialogBuilder d(Context context){
-        FastDialogBuilder dialogBuilder = new FastDialogBuilder(context,3);
-        dialog = dialogBuilder.getDialog();
-        return dialogBuilder;
+        return new FastDialogBuilder(context,Type.DIALOG);
     }
     public static FastDialogBuilder p(Context context){
-        FastDialogBuilder dialogBuilder = new FastDialogBuilder(context,4);
-        dialog = dialogBuilder.getDialog();
-        return dialogBuilder;
+        return new FastDialogBuilder(context,Type.PROGRESS);
     }
     public void show(){
-        if (dialog.isShowing()) return;
-        dialog.show();
+        if (builder.getDialog().isShowing()) return;
+        builder.getDialog().show();
     }
     public void dismiss(){
-        if (dialog.isShowing()) dialog.dismiss();
+        if (builder.getDialog().isShowing()) builder.getDialog().dismiss();
     }
     public String getInputText(){
-        EditText etWarning = dialog.findViewById(R.id.warning_dialog_et);
-        EditText etWarningDecimal = dialog.findViewById(R.id.warning_dialog_et_decimal);
+        EditText etWarning = builder.getDialog().findViewById(R.id.warning_dialog_et);
+        EditText etWarningDecimal = builder.getDialog().findViewById(R.id.warning_dialog_et_decimal);
         String text = "";
         if (!etWarning.getText().toString().trim().equals("")){
             text = etWarning.getText().toString().trim();
@@ -56,5 +47,12 @@ public class FastDialog{
             text =  etWarningDecimal.getText().toString().trim();
         }
         return text;
+    }
+
+    public void positiveClickListener(PositiveClick click){
+        builder.positiveClickListener(click);
+    }
+    public void negativeClickListener(NegativeClick click){
+        builder.negativeClickListener(click);
     }
 }

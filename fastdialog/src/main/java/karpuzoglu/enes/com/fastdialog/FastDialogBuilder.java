@@ -2,7 +2,6 @@ package karpuzoglu.enes.com.fastdialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -15,19 +14,11 @@ import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 
-import top.defaults.drawabletoolbox.DrawableBuilder;
-
 /**
  * Created by ENES on 7.12.2018.
  */
 public class FastDialogBuilder {
-    private final static int INFO_DIALOG = 0;
-    private final static int ERROR_DIALOG = 1;
-    private final static int WARNING_DIALOG = 2;
-    private final static int DIALOG = 3;
-    private final static int PROGRESS_DIALOG = 4;
     private Dialog dialog;
-    private int type = -1;
     private Context context;
     private TextView tvTitle;
     private TextView tvProgress;
@@ -37,14 +28,17 @@ public class FastDialogBuilder {
     private EditText etWarningDecimal;
     private Button btCancel;
     private Button btOk;
-    private PossitiveClick possitiveClick;
+    private PositiveClick positiveClick;
     private NegativeClick negativeClick;
 
-    public FastDialogBuilder(@NonNull Context context,int type){
-        this.context=context;
-        this.type=type;
+
+    public FastDialogBuilder(@NonNull Context context,@NonNull Type dialogType){
+        this.context = context;
+        createDialog(dialogType);
+    }
+    private FastDialogBuilder createDialog(Type type){
         dialog =new Dialog(context);
-        if (type == PROGRESS_DIALOG){
+        if (type == Type.PROGRESS){
             dialog.setContentView(R.layout.progress_dialog);
             WindowManager.LayoutParams lWindowParams = new WindowManager.LayoutParams();
             lWindowParams.copyFrom(getDialog().getWindow().getAttributes());
@@ -77,16 +71,36 @@ public class FastDialogBuilder {
             btOk.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(possitiveClick != null)
-                        possitiveClick.onClick(v);
+                    if(positiveClick != null)
+                        positiveClick.onClick(v);
+                    dialog.dismiss();
                 }
             });
             GradientDrawable shape =  new GradientDrawable();
             shape.setShape(GradientDrawable.RECTANGLE);
             //shape.setCornerRadii(new float[] { 20,20,20,20,20,20,20,20 });
             shape.setCornerRadius(20);
-            shape.setColor(ContextCompat.getColor(context,R.color.primary));
-            shape.setStroke(3, ContextCompat.getColor(context,R.color.primary));
+            if (type == Type.INFO){
+                tvTitle.setBackgroundColor(ContextCompat.getColor(context,R.color.info));
+                tvTitle.setText(context.getResources().getString(R.string.info));
+                shape.setColor(ContextCompat.getColor(context,R.color.info));
+                shape.setStroke(3, ContextCompat.getColor(context,R.color.info));
+            }else if (type == Type.ERROR){
+                tvTitle.setBackgroundColor(ContextCompat.getColor(context,R.color.error));
+                tvTitle.setText(context.getResources().getString(R.string.error));
+                shape.setColor(ContextCompat.getColor(context,R.color.error));
+                shape.setStroke(3, ContextCompat.getColor(context,R.color.error));
+            }else  if (type == Type.WARNING){
+                tvTitle.setBackgroundColor(ContextCompat.getColor(context,R.color.warning));
+                tvTitle.setText(context.getResources().getString(R.string.warning));
+                shape.setColor(ContextCompat.getColor(context,R.color.warning));
+                shape.setStroke(3, ContextCompat.getColor(context,R.color.warning));
+            }else if (type == Type.DIALOG){
+                tvTitle.setBackgroundColor(ContextCompat.getColor(context,R.color.primary));
+                tvTitle.setText(context.getResources().getString(R.string.dialog));
+                shape.setColor(ContextCompat.getColor(context,R.color.primary));
+                shape.setStroke(3, ContextCompat.getColor(context,R.color.primary));
+            }
             btOk.setBackground(shape);
             btCancel.setBackground(shape);
 
@@ -98,6 +112,7 @@ public class FastDialogBuilder {
             btCancel.setVisibility(View.GONE);
             btOk.setVisibility(View.GONE);
         }
+        return this;
     }
     public FastDialogBuilder changeColor(int colorItem,int colorItemText,int colorText){
         tvTitle.setBackgroundColor(colorItem);
@@ -178,7 +193,7 @@ public class FastDialogBuilder {
         btCancel.setText(negative);
         return this;
     }
-    public FastDialogBuilder possitiveText(String possitive){
+    public FastDialogBuilder positiveText(String possitive){
         btOk.setVisibility(View.VISIBLE);
         btOk.setText(possitive);
         return this;
@@ -188,15 +203,13 @@ public class FastDialogBuilder {
         etWarningDecimal.setVisibility(View.VISIBLE);
         return this;
     }
-    public FastDialogBuilder possitiveClickListener(PossitiveClick click){
+    public void positiveClickListener(PositiveClick click){
         btOk.setVisibility(View.VISIBLE);
-        possitiveClick = click;
-        return this;
+        positiveClick = click;
     }
-    public  FastDialogBuilder negativeClickListener(NegativeClick click){
+    public void negativeClickListener(NegativeClick click){
         btCancel.setVisibility(View.VISIBLE);
         negativeClick = click;
-        return this;
     }
     public FastDialogBuilder cancelable(boolean bool){
         dialog.setCancelable(bool);

@@ -1,4 +1,4 @@
-package ka.enes.com.simple;
+package ka.enes.com.sample;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

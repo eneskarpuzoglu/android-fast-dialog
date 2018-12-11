@@ -1,4 +1,4 @@
-package ka.enes.com.simple;
+package ka.enes.com.sample;
 
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -10,7 +10,8 @@ import karpuzoglu.enes.com.fastdialog.Animations;
 import karpuzoglu.enes.com.fastdialog.FastDialog;
 import karpuzoglu.enes.com.fastdialog.FastDialogBuilder;
 import karpuzoglu.enes.com.fastdialog.Positions;
-import karpuzoglu.enes.com.fastdialog.PossitiveClick;
+import karpuzoglu.enes.com.fastdialog.PositiveClick;
+import karpuzoglu.enes.com.fastdialog.Type;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -24,10 +25,18 @@ public class MainActivity extends AppCompatActivity {
     public void progress(View view){
         FastDialog.p(this).progressText("Please Wait!").create().show();
     }
-    public void warn(View view){
+    public void err(View view){
         FastDialog.e(this)
                 .setText("Error Dialog")
                 .hideTitle()
+                .create()
+                .show();
+    }
+    public void error2(View view){
+        FastDialog.e(this)
+                .setText("Error Message")
+                .hideIcon()
+                .positiveText("OK")
                 .create()
                 .show();
     }
@@ -35,12 +44,9 @@ public class MainActivity extends AppCompatActivity {
         FastDialog.w(this)
                 .setTitleText("Warning")
                 .setText("Warning Text")
-                .changeColor(ContextCompat.getColor(getApplicationContext(),R.color.warning),
-                        ContextCompat.getColor(getApplicationContext(),R.color.text2),
-                        ContextCompat.getColor(getApplicationContext(),R.color.text))
                 .setHint("please enter text")
                 .setAnimation(Animations.GROW_IN)
-                .possitiveText("Accept")
+                .positiveText("Accept")
                 .create()
                 .show();
     }
@@ -51,46 +57,49 @@ public class MainActivity extends AppCompatActivity {
                 .setHint("please enter number")
                 .decimalEditText()
                 .setAnimation(Animations.FADE_IN)
-                .possitiveText("Ok")
+                .positiveText("Ok")
                 .negativeText("Cancel")
                 .create()
                 .show();
     }
     public void bottomAnim(View view){
-        dialog.i(this)
+        dialog = new FastDialogBuilder(this,Type.INFO)
                 .setTitleText("Information")
                 .setText("Information Text")
-                .possitiveText("Ok")
+                .positiveText("Ok")
                 .negativeText("Cancel")
                 .setAnimation(Animations.SLIDE_BOTTOM)
                 .setPosition(Positions.BOTTOM)
-                .possitiveClickListener(new PossitiveClick() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(MainActivity.this,"Ok Pressed",Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    }
-                })
-                .create()
-                .show();
+                .create();
+        dialog.positiveClickListener(new PositiveClick() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this,"Ok Pressed",Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
     }
     public void topAnim(View view){
-        dialog.w(this)
+        dialog= new FastDialogBuilder(this,Type.DIALOG)
                 .setTitleText("Warning")
                 .setText("Warning Text")
-                .possitiveText("Ok")
+                .positiveText("Ok")
                 .negativeText("Cancel")
+                .changeColor(ContextCompat.getColor(getApplicationContext(),R.color.different),
+                        ContextCompat.getColor(getApplicationContext(),R.color.text2),
+                        ContextCompat.getColor(getApplicationContext(),R.color.text))
                 .setHint("please enter your name")
                 .setAnimation(Animations.SLIDE_TOP)
                 .setPosition(Positions.TOP)
-                .possitiveClickListener(new PossitiveClick() {
-                    @Override
-                    public void onClick(View view) {
-                        Toast.makeText(MainActivity.this,dialog.getInputText().equals("")?"EditText is Empty":dialog.getInputText(),Toast.LENGTH_SHORT).show();
-                        dialog.dismiss();
-                    }
-                })
-                .create()
-                .show();
+                .create();
+        dialog.positiveClickListener(new PositiveClick() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+                Toast.makeText(MainActivity.this,dialog.getInputText().equals("")?"EditText is Empty":dialog.getInputText(),Toast.LENGTH_SHORT).show();
+            }
+        });
+        dialog.show();
     }
 }

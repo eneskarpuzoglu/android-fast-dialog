@@ -22,15 +22,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
-            android:onClick="warn"
-            android:text="Warning Dialog"
+            android:onClick="err"
+            android:text="Error Dialog"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:onClick="error2"
+            android:text="Error Dialog 2"
             />
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
             android:onClick="text"
-            android:text="Input Text Dialog"
+            android:text="Warning Dialog with EditText"
             />
         <Button
             android:layout_width="match_parent"
@@ -51,7 +58,7 @@
             android:layout_height="wrap_content"
             android:textAllCaps="false"
             android:onClick="topAnim"
-            android:text="Top Animation Dialog"
+            android:text="Colored Dialog with EditText and positivelistener "
             />
     </LinearLayout>
 
