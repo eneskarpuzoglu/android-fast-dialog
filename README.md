@@ -42,7 +42,7 @@ Provides you easily create various pop-up dialogs that you can use.
 	 setText(String text) // set fast-dialog TextView
 	 setHint(String hint) // set fast-dialog EditText's hint
 	 negativeText(String negative) // set negative button on fast-dialog and set button text
-	 possitiveText(String possitive) // set possitive button on fast-dialog and set button text
+	 positiveText(String positive) // set positive button on fast-dialog and set button text
 	 cancelable(boolean bool) // set cancelable to fast-dialog
 	 decimalEditText() // set EditText to decimalEditText
 	 changeColor(int colorButtonsAndTitle,int colorButtonsAndTitleText,int colorPrimaryText) // change fast-dialog colors
@@ -73,7 +73,7 @@ Provides you easily create various pop-up dialogs that you can use.
 	w(this) // create warning dialog
 	d(this) // create normal dialog
 	p(this) // create progress dialog
-	possitiveClickListener(PossitiveClick click) // set listener to possitive button
+	positiveClickListener(PositiveClick click) // set listener to positive button
 	negativeClickListener(NegativeClick click) // set listener to negative button	
 	show() //show dialog
 	dismiss() //dismiss dialog
@@ -136,7 +136,7 @@ Provides you easily create various pop-up dialogs that you can use.
 ```
 <img width="300px" src="images/input_number.gif" align="center"/>
 
->  Information Dialog position bottom, slide bottom animation and listener possitive button
+>  Information Dialog position bottom, slide bottom animation and listener positive button
 ```java
 	FastDialog dialog = new FastDialogBuilder(this,Type.INFO)
                 .setTitleText("Information")
@@ -157,7 +157,7 @@ Provides you easily create various pop-up dialogs that you can use.
 ```
 <img width="300px" src="images/bottom_dialog.gif" align="center"/>
 
->  Warning Colored Dialog position top, slide top animation and listener possitive button
+>  Warning Colored Dialog position top, slide top animation and listener positive button
 ```java
 	FastDialog dialog= new FastDialogBuilder(this,Type.DIALOG)
                 .setTitleText("Warning")
