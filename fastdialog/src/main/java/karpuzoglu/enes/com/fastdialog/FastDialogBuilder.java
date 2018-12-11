@@ -193,9 +193,9 @@ public class FastDialogBuilder {
         btCancel.setText(negative);
         return this;
     }
-    public FastDialogBuilder positiveText(String possitive){
+    public FastDialogBuilder positiveText(String positive){
         btOk.setVisibility(View.VISIBLE);
-        btOk.setText(possitive);
+        btOk.setText(positive);
         return this;
     }
     public FastDialogBuilder decimalEditText(){
