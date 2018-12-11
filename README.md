@@ -77,6 +77,7 @@ Provides you easily create various pop-up dialogs that you can use.
 	positiveClickListener(PositiveClick click) // set listener to positive button
 	negativeClickListener(NegativeClick click) // set listener to negative button	
 	dismissListener(DismissListener dismissListener) // set dismiss listener to fast-dialog
+	isShowing() // return is fast-dialog showing
 	show() //show dialog
 	dismiss() //dismiss dialog
 	getInputText() // get dialog EditText's text
@@ -140,13 +141,12 @@ Provides you easily create various pop-up dialogs that you can use.
 ```
 <img width="300px" src="images/input_number.gif" align="center"/>
 
->  Information Dialog position bottom, slide bottom animation and listener positive button
+>  Information Dialog position bottom, slide bottom animation and listener positive button and dismiss listener
 ```java
 	FastDialog dialog = new FastDialogBuilder(this,Type.INFO)
                 .setTitleText("Information")
                 .setText("Information Text")
                 .positiveText("Ok")
-                .negativeText("Cancel")
                 .setAnimation(Animations.SLIDE_BOTTOM)
                 .setPosition(Positions.BOTTOM)
                 .create();
@@ -155,6 +155,12 @@ Provides you easily create various pop-up dialogs that you can use.
             public void onClick(View view) {
                 Toast.makeText(MainActivity.this,"Ok Pressed",Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
+            }
+        });
+        dialog.dismissListener(new DismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                FastDialog.i(MainActivity.this).setText("Closed").hideTitle().create().show();
             }
         });
         dialog.show();
