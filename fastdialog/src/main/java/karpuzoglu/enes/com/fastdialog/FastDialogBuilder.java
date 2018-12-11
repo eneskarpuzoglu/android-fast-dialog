@@ -3,7 +3,9 @@ package karpuzoglu.enes.com.fastdialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -19,7 +21,13 @@ import top.defaults.drawabletoolbox.DrawableBuilder;
  * Created by ENES on 7.12.2018.
  */
 public class FastDialogBuilder {
+    private final static int INFO_DIALOG = 0;
+    private final static int ERROR_DIALOG = 1;
+    private final static int WARNING_DIALOG = 2;
+    private final static int DIALOG = 3;
+    private final static int PROGRESS_DIALOG = 4;
     private Dialog dialog;
+    private int type = -1;
     private Context context;
     private TextView tvTitle;
     private TextView tvProgress;
@@ -32,99 +40,83 @@ public class FastDialogBuilder {
     private PossitiveClick possitiveClick;
     private NegativeClick negativeClick;
 
-    public FastDialogBuilder(@NonNull Context context){
+    public FastDialogBuilder(@NonNull Context context,int type){
         this.context=context;
+        this.type=type;
         dialog =new Dialog(context);
-        dialog.setContentView(R.layout.warning_dialog);
-        WindowManager.LayoutParams lWindowParams = new WindowManager.LayoutParams();
-        lWindowParams.copyFrom(getDialog().getWindow().getAttributes());
-        lWindowParams.width = WindowManager.LayoutParams.MATCH_PARENT;
-        lWindowParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
-        dialog.getWindow().setAttributes(lWindowParams);
-        tvTitle = dialog.findViewById(R.id.warning_dialog_title);
-        lawWarning = dialog.findViewById(R.id.warning_dialog_animation);
-        tvWarning = dialog.findViewById(R.id.warning_dialog_text);
-        etWarning = dialog.findViewById(R.id.warning_dialog_et);
-        etWarningDecimal = dialog.findViewById(R.id.warning_dialog_et_decimal);
-        btCancel = dialog.findViewById(R.id.warning_dialog_cancel_bt);
-        btOk = dialog.findViewById(R.id.warning_dialog_ok_bt);
-        btCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(negativeClick != null)
-                    negativeClick.onClick(v);
-                dialog.dismiss();
-            }
-        });
-        btOk.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(possitiveClick != null)
-                    possitiveClick.onClick(v);
-            }
-        });
-        Drawable etDrawable = new DrawableBuilder()
-                .rectangle()
-                .hairlineBordered()
-                .bottomLeftRadius(20)
-                .topLeftRadius(20)
-                .topRightRadius(20)
-                .bottomRightRadius(20)
-                .strokeColor(context.getColor(R.color.colorPrimaryDark))
-                .build();
-        etWarningDecimal.setBackground(etDrawable);
-        etWarning.setBackground(etDrawable);
-        Drawable btDrawable = new DrawableBuilder()
-                .rectangle()
-                .solidColor(context.getColor(R.color.colorPrimaryDark))
-                .bottomLeftRadius(20)
-                .topLeftRadius(20)
-                .topRightRadius(20)
-                .bottomRightRadius(20)
-                .build();
-        btOk.setBackground(btDrawable);
-        btCancel.setBackground(btDrawable);
+        if (type == PROGRESS_DIALOG){
+            dialog.setContentView(R.layout.progress_dialog);
+            WindowManager.LayoutParams lWindowParams = new WindowManager.LayoutParams();
+            lWindowParams.copyFrom(getDialog().getWindow().getAttributes());
+            lWindowParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+            lWindowParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            dialog.getWindow().setAttributes(lWindowParams);
+            tvProgress = dialog.findViewById(R.id.wait_text);
+        }else{
+            dialog.setContentView(R.layout.warning_dialog);
+            WindowManager.LayoutParams lWindowParams = new WindowManager.LayoutParams();
+            lWindowParams.copyFrom(getDialog().getWindow().getAttributes());
+            lWindowParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+            lWindowParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            dialog.getWindow().setAttributes(lWindowParams);
+            tvTitle = dialog.findViewById(R.id.warning_dialog_title);
+            lawWarning = dialog.findViewById(R.id.warning_dialog_animation);
+            tvWarning = dialog.findViewById(R.id.warning_dialog_text);
+            etWarning = dialog.findViewById(R.id.warning_dialog_et);
+            etWarningDecimal = dialog.findViewById(R.id.warning_dialog_et_decimal);
+            btCancel = dialog.findViewById(R.id.warning_dialog_cancel_bt);
+            btOk = dialog.findViewById(R.id.warning_dialog_ok_bt);
+            btCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(negativeClick != null)
+                        negativeClick.onClick(v);
+                    dialog.dismiss();
+                }
+            });
+            btOk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(possitiveClick != null)
+                        possitiveClick.onClick(v);
+                }
+            });
+            GradientDrawable shape =  new GradientDrawable();
+            shape.setShape(GradientDrawable.RECTANGLE);
+            //shape.setCornerRadii(new float[] { 20,20,20,20,20,20,20,20 });
+            shape.setCornerRadius(20);
+            shape.setColor(ContextCompat.getColor(context,R.color.primary));
+            shape.setStroke(3, ContextCompat.getColor(context,R.color.primary));
+            btOk.setBackground(shape);
+            btCancel.setBackground(shape);
 
-        tvTitle.setVisibility(View.GONE);
-        lawWarning.setVisibility(View.GONE);
-        tvWarning.setVisibility(View.GONE);
-        etWarning.setVisibility(View.GONE);
-        etWarningDecimal.setVisibility(View.GONE);
-        btCancel.setVisibility(View.GONE);
-        btOk.setVisibility(View.GONE);
+            tvTitle.setVisibility(View.VISIBLE);
+            lawWarning.setVisibility(View.VISIBLE);
+            tvWarning.setVisibility(View.GONE);
+            etWarning.setVisibility(View.GONE);
+            etWarningDecimal.setVisibility(View.GONE);
+            btCancel.setVisibility(View.GONE);
+            btOk.setVisibility(View.GONE);
+        }
     }
     public FastDialogBuilder changeColor(int colorItem,int colorItemText,int colorText){
         tvTitle.setBackgroundColor(colorItem);
         tvTitle.setTextColor(colorItemText);
         tvWarning.setTextColor(colorText);
-        Drawable btDrawable = new DrawableBuilder()
-                .rectangle()
-                .bottomLeftRadius(20)
-                .topLeftRadius(20)
-                .topRightRadius(20)
-                .bottomRightRadius(20)
-                .solidColor(colorItem)
-                .build();
-        Drawable etDrawable = new DrawableBuilder()
-                .rectangle()
-                .bottomLeftRadius(20)
-                .topLeftRadius(20)
-                .topRightRadius(20)
-                .bottomRightRadius(20)
-                .hairlineBordered()
-                .strokeColor(colorItem)
-                .build();
-        etWarning.setBackground(etDrawable);
-        etWarningDecimal.setBackground(etDrawable);
-        btCancel.setBackground(btDrawable);
-        btOk.setBackground(btDrawable);
+        GradientDrawable shape =  new GradientDrawable();
+        shape.setShape(GradientDrawable.RECTANGLE);
+        //shape.setCornerRadii(new float[] { 20,20,20,20,20,20,20,20 });
+        shape.setCornerRadius(20);
+        shape.setColor(colorItem);
+        shape.setStroke(3, colorItem);
+
+        btCancel.setBackground(shape);
+        btOk.setBackground(shape);
         btCancel.setTextColor(colorItemText);
         btOk.setTextColor(colorItemText);
         return this;
     }
-    public FastDialogBuilder progressDialog(String progressString){
-        dialog.setContentView(R.layout.progress_dialog);
-        tvProgress = dialog.findViewById(R.id.wait_text);
+    public FastDialogBuilder progressText(String progressString){
         tvProgress.setText(progressString);
         return this;
     }
@@ -158,13 +150,16 @@ public class FastDialogBuilder {
         }
         return this;
     }
-    public FastDialogBuilder setTitle(String title){
-        tvTitle.setVisibility(View.VISIBLE);
+    public FastDialogBuilder setTitleText(String title){
         tvTitle.setText(title);
         return this;
     }
-    public FastDialogBuilder withIcon(){
-        lawWarning.setVisibility(View.VISIBLE);
+    public FastDialogBuilder hideTitle(){
+        tvTitle.setVisibility(View.GONE);
+        return this;
+    }
+    public FastDialogBuilder hideIcon(){
+        lawWarning.setVisibility(View.GONE);
         return this;
     }
     public FastDialogBuilder setText(String text){
@@ -188,14 +183,9 @@ public class FastDialogBuilder {
         btOk.setText(possitive);
         return this;
     }
-    public FastDialogBuilder decimalEditText(boolean bool){
-        if(bool){
-            etWarning.setVisibility(View.GONE);
-            etWarningDecimal.setVisibility(View.VISIBLE);
-        }else{
-            etWarning.setVisibility(View.VISIBLE);
-            etWarningDecimal.setVisibility(View.GONE);
-        }
+    public FastDialogBuilder decimalEditText(){
+        etWarning.setVisibility(View.GONE);
+        etWarningDecimal.setVisibility(View.VISIBLE);
         return this;
     }
     public FastDialogBuilder possitiveClickListener(PossitiveClick click){

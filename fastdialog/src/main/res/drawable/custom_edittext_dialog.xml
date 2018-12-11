@@ -9,7 +9,7 @@
 
             <stroke
                 android:width="2dp"
-                android:color="@color/colorPrimary" >
+                android:color="@color/et_color" >
             </stroke>
 
             <corners

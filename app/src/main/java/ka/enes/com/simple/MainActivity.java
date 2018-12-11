@@ -22,49 +22,46 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
     public void progress(View view){
-        dialog = new FastDialogBuilder(this)
-                .progressDialog("Please Wait!").create();
-        dialog.show();
+        FastDialog.p(this).progressText("Please Wait!").create().show();
     }
     public void warn(View view){
-        dialog = new FastDialogBuilder(this)
-                .setText("Warning")
-                .withIcon()
-                .create();
-        dialog.show();
+        FastDialog.e(this)
+                .setText("Error Dialog")
+                .hideTitle()
+                .create()
+                .show();
     }
     public void text(View view){
-        dialog = new FastDialogBuilder(this)
-                .setTitle("Warning")
+        FastDialog.w(this)
+                .setTitleText("Warning")
                 .setText("Warning Text")
-                .changeColor(ContextCompat.getColor(getApplicationContext(),R.color.colorAccent),
-                        ContextCompat.getColor(getApplicationContext(),R.color.colorSecondaryText),
-                        ContextCompat.getColor(getApplicationContext(),R.color.colorPrimaryText))
+                .changeColor(ContextCompat.getColor(getApplicationContext(),R.color.warning),
+                        ContextCompat.getColor(getApplicationContext(),R.color.text2),
+                        ContextCompat.getColor(getApplicationContext(),R.color.text))
                 .setHint("please enter text")
                 .setAnimation(Animations.GROW_IN)
-                .negativeText("Cancel")
-                .create();
-        dialog.show();
+                .possitiveText("Accept")
+                .create()
+                .show();
     }
     public void number(View view){
-        dialog = new FastDialogBuilder(this)
-                .setTitle("Warning")
-                .setText("Warning Text")
+        FastDialog.d(this)
+                .setTitleText("Dialog")
+                .setText("Dialog Text")
                 .setHint("please enter number")
-                .decimalEditText(true)
+                .decimalEditText()
                 .setAnimation(Animations.FADE_IN)
                 .possitiveText("Ok")
                 .negativeText("Cancel")
-                .create();
-        dialog.show();
+                .create()
+                .show();
     }
     public void bottomAnim(View view){
-        dialog = new FastDialogBuilder(this)
-                .setTitle("Warning")
-                .setText("Warning Text")
+        dialog.i(this)
+                .setTitleText("Information")
+                .setText("Information Text")
                 .possitiveText("Ok")
                 .negativeText("Cancel")
-                .withIcon()
                 .setAnimation(Animations.SLIDE_BOTTOM)
                 .setPosition(Positions.BOTTOM)
                 .possitiveClickListener(new PossitiveClick() {
@@ -74,27 +71,26 @@ public class MainActivity extends AppCompatActivity {
                         dialog.dismiss();
                     }
                 })
-                .create();
-        dialog.show();
+                .create()
+                .show();
     }
     public void topAnim(View view){
-        dialog = new FastDialogBuilder(this)
-                .setTitle("Warning")
+        dialog.w(this)
+                .setTitleText("Warning")
                 .setText("Warning Text")
                 .possitiveText("Ok")
                 .negativeText("Cancel")
                 .setHint("please enter your name")
-                .withIcon()
                 .setAnimation(Animations.SLIDE_TOP)
                 .setPosition(Positions.TOP)
                 .possitiveClickListener(new PossitiveClick() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(MainActivity.this,"Ok Pressed",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this,dialog.getInputText().equals("")?"EditText is Empty":dialog.getInputText(),Toast.LENGTH_SHORT).show();
                         dialog.dismiss();
                     }
                 })
-                .create();
-        dialog.show();
+                .create()
+                .show();
     }
 }
