@@ -46,6 +46,7 @@ Provides you easily create various pop-up dialogs that you can use.
 	 cancelable(boolean bool) // set cancelable to fast-dialog
 	 decimalEditText() // set EditText to decimalEditText
 	 changeColor(int colorButtonsAndTitle,int colorButtonsAndTitleText,int colorPrimaryText) // change fast-dialog colors
+     setInputText(String str) // set EditText input
 		//Animations
 	 setAnimation(Animations animation)
 		// Animations.SLIDE_LEFT
@@ -123,7 +124,7 @@ Provides you easily create various pop-up dialogs that you can use.
 
 >  Normal Dialog position center, fade in animation with DecimalEditText
 ```java
-        FastDialog.d(this)
+		FastDialog.d(this)
                 .setTitleText("Dialog")
                 .setText("Dialog Text")
                 .setHint("please enter number")
@@ -131,6 +132,8 @@ Provides you easily create various pop-up dialogs that you can use.
                 .setAnimation(Animations.FADE_IN)
                 .positiveText("Ok")
                 .negativeText("Cancel")
+                .setInputText("55")
+                .cancelable(false)
                 .create()
                 .show();
 ```
