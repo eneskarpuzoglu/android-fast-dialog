@@ -30,5 +30,4 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation "com.airbnb.android:lottie:2.7.0"
-    implementation 'com.github.duanhong169:drawabletoolbox:1.0.7'
 }
