@@ -6,11 +6,14 @@ import android.content.DialogInterface;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.text.InputFilter;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -25,8 +28,8 @@ public class FastDialogBuilder {
     private TextView tvProgress;
     private LottieAnimationView lawWarning;
     private TextView tvWarning;
-    private EditText etWarning;
-    private EditText etWarningDecimal;
+    private ClearableEditText etWarning;
+    private ClearableEditText etWarningDecimal;
     private Button btCancel;
     private Button btOk;
     private PositiveClick positiveClick;
@@ -237,6 +240,12 @@ public class FastDialogBuilder {
             etWarningDecimal.setSelection(etWarningDecimal.getText().length());
         }
 
+        return this;
+    }
+
+    public FastDialogBuilder setTextMaxLenght(int lenght){
+        etWarning.setFilters(new InputFilter[] { new InputFilter.LengthFilter(lenght) });
+        etWarningDecimal.setFilters(new InputFilter[] { new InputFilter.LengthFilter(lenght) });
         return this;
     }
     public FastDialog create(){

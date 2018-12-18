@@ -42,8 +42,7 @@
                 android:textSize="15dp"
                 android:padding="5dp"/>
         </LinearLayout>
-
-        <EditText
+        <karpuzoglu.enes.com.fastdialog.ClearableEditText
             android:id="@+id/warning_dialog_et"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -53,7 +52,7 @@
             android:padding="10dp"
             android:textColor="@color/text"
             android:textSize="15dp" />
-        <EditText
+        <karpuzoglu.enes.com.fastdialog.ClearableEditText
             android:id="@+id/warning_dialog_et_decimal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

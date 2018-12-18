@@ -45,6 +45,7 @@ Provides you easily create various pop-up dialogs that you can use.
 	 positiveText(String positive) // set positive button on fast-dialog and set button text
 	 cancelable(boolean bool) // set cancelable to fast-dialog
 	 decimalEditText() // set EditText to decimalEditText
+	 setTextMaxLenght(int lenght) // set EditText max lenght
 	 changeColor(int colorButtonsAndTitle,int colorButtonsAndTitleText,int colorPrimaryText) // change fast-dialog colors
      setInputText(String str) // set EditText input
 		//Animations
@@ -135,6 +136,7 @@ Provides you easily create various pop-up dialogs that you can use.
                 .positiveText("Ok")
                 .negativeText("Cancel")
                 .setInputText("55")
+                .setTextMaxLenght(16)
                 .cancelable(false)
                 .create()
                 .show();

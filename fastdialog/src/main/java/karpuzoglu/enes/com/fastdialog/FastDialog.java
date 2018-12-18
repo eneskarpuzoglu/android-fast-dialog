@@ -1,6 +1,7 @@
 package karpuzoglu.enes.com.fastdialog;
 
 import android.content.Context;
+import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,8 +39,8 @@ public class FastDialog{
         if (builder.getDialog().isShowing()) builder.getDialog().dismiss();
     }
     public String getInputText(){
-        EditText etWarning = builder.getDialog().findViewById(R.id.warning_dialog_et);
-        EditText etWarningDecimal = builder.getDialog().findViewById(R.id.warning_dialog_et_decimal);
+        ClearableEditText etWarning = builder.getDialog().findViewById(R.id.warning_dialog_et);
+        ClearableEditText etWarningDecimal = builder.getDialog().findViewById(R.id.warning_dialog_et_decimal);
         String text = "";
         if (!etWarning.getText().toString().trim().equals("")){
             text = etWarning.getText().toString().trim();
@@ -48,7 +49,6 @@ public class FastDialog{
         }
         return text;
     }
-
     public void positiveClickListener(PositiveClick click){
         builder.positiveClickListener(click);
     }

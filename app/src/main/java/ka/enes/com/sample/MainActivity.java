@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                 .positiveText("Ok")
                 .negativeText("Cancel")
                 .setInputText("55")
+                .setTextMaxLenght(16)
                 .cancelable(false)
                 .create()
                 .show();
