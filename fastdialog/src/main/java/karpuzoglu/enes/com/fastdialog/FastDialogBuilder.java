@@ -36,10 +36,12 @@ public class FastDialogBuilder {
     private NegativeClick negativeClick;
     private DismissListener dismissListener;
     private boolean isDecimal = false;
+    private Type type;
 
 
     public FastDialogBuilder(@NonNull Context context,@NonNull Type dialogType){
         this.context = context;
+        this.type = dialogType;
         createDialog(dialogType);
     }
     private FastDialogBuilder createDialog(Type type){
@@ -255,6 +257,11 @@ public class FastDialogBuilder {
         return dialog;
     }
 
+    public Type getType() {
+        return type;
+    }
 
-
+    public void setType(Type type) {
+        this.type = type;
+    }
 }

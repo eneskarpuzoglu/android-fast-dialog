@@ -5,6 +5,7 @@ import android.text.InputFilter;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * Created by ENES on 7.12.2018.
@@ -48,6 +49,12 @@ public class FastDialog{
             text =  etWarningDecimal.getText().toString().trim();
         }
         return text;
+    }
+    public void setProgressText(String str){
+        if (builder.getType() == Type.PROGRESS){
+            TextView textView = builder.getDialog().findViewById(R.id.wait_text);
+            textView.setText(str);
+        }
     }
     public void positiveClickListener(PositiveClick click){
         builder.positiveClickListener(click);

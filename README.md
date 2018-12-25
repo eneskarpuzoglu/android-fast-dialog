@@ -82,6 +82,7 @@ Provides you easily create various pop-up dialogs that you can use.
 	show() //show dialog
 	dismiss() //dismiss dialog
 	getInputText() // get dialog EditText's text
+	setProgressText(String str) // set Progress dialog text
 	 
 ```
 ## Examples
