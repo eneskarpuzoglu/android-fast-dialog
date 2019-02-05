@@ -46,6 +46,7 @@ Provides you easily create various pop-up dialogs that you can use.
 	 cancelable(boolean bool) // set cancelable to fast-dialog
 	 decimalEditText() // set EditText to decimalEditText
 	 setTextMaxLenght(int lenght) // set EditText max lenght
+	 setFullScreen(boolean bool) // set fullscreen to dialog window. default true
 	 changeColor(int colorButtonsAndTitle,int colorButtonsAndTitleText,int colorPrimaryText) // change fast-dialog colors
      setInputText(String str) // set EditText input
 		//Animations

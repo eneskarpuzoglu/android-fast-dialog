@@ -36,6 +36,7 @@ public class FastDialogBuilder {
     private NegativeClick negativeClick;
     private DismissListener dismissListener;
     private boolean isDecimal = false;
+    private boolean fullScreen = true;
     private Type type;
 
 
@@ -44,23 +45,17 @@ public class FastDialogBuilder {
         this.type = dialogType;
         createDialog(dialogType);
     }
+    public FastDialogBuilder setFullScreen(boolean set){
+        fullScreen = set;
+        return this;
+    }
     private FastDialogBuilder createDialog(Type type){
         dialog =new Dialog(context);
         if (type == Type.PROGRESS){
             dialog.setContentView(R.layout.progress_dialog);
-            WindowManager.LayoutParams lWindowParams = new WindowManager.LayoutParams();
-            lWindowParams.copyFrom(getDialog().getWindow().getAttributes());
-            lWindowParams.width = WindowManager.LayoutParams.MATCH_PARENT;
-            lWindowParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
-            dialog.getWindow().setAttributes(lWindowParams);
             tvProgress = dialog.findViewById(R.id.wait_text);
         }else{
             dialog.setContentView(R.layout.warning_dialog);
-            WindowManager.LayoutParams lWindowParams = new WindowManager.LayoutParams();
-            lWindowParams.copyFrom(getDialog().getWindow().getAttributes());
-            lWindowParams.width = WindowManager.LayoutParams.MATCH_PARENT;
-            lWindowParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
-            dialog.getWindow().setAttributes(lWindowParams);
             tvTitle = dialog.findViewById(R.id.warning_dialog_title);
             lawWarning = dialog.findViewById(R.id.warning_dialog_animation);
             tvWarning = dialog.findViewById(R.id.warning_dialog_text);
@@ -251,6 +246,13 @@ public class FastDialogBuilder {
         return this;
     }
     public FastDialog create(){
+        if (fullScreen){
+            WindowManager.LayoutParams lWindowParams = new WindowManager.LayoutParams();
+            lWindowParams.copyFrom(getDialog().getWindow().getAttributes());
+            lWindowParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+            lWindowParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            dialog.getWindow().setAttributes(lWindowParams);
+        }
         return new FastDialog(this);
     }
     public Dialog getDialog(){

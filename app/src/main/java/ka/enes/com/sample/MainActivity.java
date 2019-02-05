@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         FastDialog.e(this)
                 .setText("Error Dialog")
                 .hideTitle()
+                .setFullScreen(false)
                 .create()
                 .show();
     }
@@ -85,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.dismissListener(new DismissListener() {
             @Override
             public void onDismiss(DialogInterface dialog) {
-                FastDialog.i(MainActivity.this).setText("Closed").create().show();
+                FastDialog.i(MainActivity.this).setText("Closed").setFullScreen(false).create().show();
             }
         });
         dialog.show();
