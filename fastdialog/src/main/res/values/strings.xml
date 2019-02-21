@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">FastDialog</string>
     <string name="warning">Warning</string>
+    <string name="login">Login</string>
     <string name="error">Error</string>
     <string name="info">Info</string>
     <string name="dialog">Dialog</string>
@@ -9,4 +10,7 @@
     <string name="cancel">Cancel</string>
     <string name="ok">OK</string>
     <string name="please_wait">Please wait!</string>
+    <string name="username">Username</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>

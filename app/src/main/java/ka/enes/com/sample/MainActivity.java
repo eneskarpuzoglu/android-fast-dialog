@@ -35,13 +35,19 @@ public class MainActivity extends AppCompatActivity {
                 .create()
                 .show();
     }
-    public void error2(View view){
-        FastDialog.e(this)
-                .setText("Error Message")
-                .hideIcon()
-                .positiveText("OK")
-                .create()
-                .show();
+    public void login(View view){
+        dialog = new FastDialogBuilder(this,Type.LOGIN)
+                //.loginWithEmail()
+                .setTitleText("Login")
+                .create();
+        dialog.positiveClickListener(new PositiveClick() {
+            @Override
+            public void onClick(View view) {
+                String string = dialog.getUsernameOrEmail() +" - "+dialog.getPassword();
+                Toast.makeText(MainActivity.this,string,Toast.LENGTH_SHORT).show();
+            }
+        });
+        dialog.show();
     }
     public void text(View view){
         FastDialog.w(this)

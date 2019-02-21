@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/login_dialog_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/primary"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/login"
+            android:textColor="@color/text2"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+        <karpuzoglu.enes.com.fastdialog.ClearableEditText
+            android:id="@+id/login_dialog_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:hint="@string/username"
+            android:background="@drawable/custom_edittext_dialog"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:textColor="@color/text"
+            android:textSize="15dp" />
+        <karpuzoglu.enes.com.fastdialog.ClearableEditText
+            android:id="@+id/login_dialog_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:hint="@string/password"
+            android:background="@drawable/custom_edittext_dialog"
+            android:padding="10dp"
+            android:inputType="textPassword"
+            android:textColor="@color/text"
+            android:textSize="15dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/warning_dialog_cancel_bt"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:textColor="@color/text2"
+                android:layout_margin="15dp"
+                android:textSize="20dp"
+                android:text="@string/cancel"
+                android:textAllCaps="false"
+                android:layout_weight="1"/>
+            <Button
+                android:id="@+id/warning_dialog_ok_bt"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:textColor="@color/text2"
+                android:layout_margin="15dp"
+                android:textSize="20dp"
+                android:textAllCaps="false"
+                android:text="@string/ok"
+                android:layout_weight="1"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

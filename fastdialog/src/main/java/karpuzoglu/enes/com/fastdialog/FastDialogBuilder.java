@@ -3,6 +3,7 @@ package karpuzoglu.enes.com.fastdialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -30,6 +31,8 @@ public class FastDialogBuilder {
     private TextView tvWarning;
     private ClearableEditText etWarning;
     private ClearableEditText etWarningDecimal;
+    private ClearableEditText etUsername;
+    private ClearableEditText etPassword;
     private Button btCancel;
     private Button btOk;
     private PositiveClick positiveClick;
@@ -54,6 +57,39 @@ public class FastDialogBuilder {
         if (type == Type.PROGRESS){
             dialog.setContentView(R.layout.progress_dialog);
             tvProgress = dialog.findViewById(R.id.wait_text);
+        }else if(type == Type.LOGIN){
+            dialog.setContentView(R.layout.login_dialog);
+            tvTitle = dialog.findViewById(R.id.login_dialog_title);
+            etUsername = dialog.findViewById(R.id.login_dialog_username);
+            etPassword = dialog.findViewById(R.id.login_dialog_password);
+            Drawable imgPassword = context.getResources().getDrawable( R.drawable.ic_password_black );
+            imgPassword.setBounds( 0, 0, 45, 45 );
+            etPassword.setCompoundDrawables(imgPassword,null,null,null);
+            Drawable imgUser = context.getResources().getDrawable( R.drawable.ic_user_black );
+            imgUser.setBounds( 0, 0, 45, 45 );
+            etUsername.setCompoundDrawables(imgUser,null,null,null);
+            btCancel = dialog.findViewById(R.id.warning_dialog_cancel_bt);
+            btOk = dialog.findViewById(R.id.warning_dialog_ok_bt);
+            btCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(negativeClick != null)
+                        negativeClick.onClick(v);
+                    dialog.dismiss();
+                }
+            });
+            btOk.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(positiveClick != null)
+                        positiveClick.onClick(v);
+                    dialog.dismiss();
+                }
+            });
+            btOk.setBackground(getShape());
+            btCancel.setBackground(getShape());
+
+
         }else{
             dialog.setContentView(R.layout.warning_dialog);
             tvTitle = dialog.findViewById(R.id.warning_dialog_title);
@@ -79,33 +115,8 @@ public class FastDialogBuilder {
                     dialog.dismiss();
                 }
             });
-            GradientDrawable shape =  new GradientDrawable();
-            shape.setShape(GradientDrawable.RECTANGLE);
-            //shape.setCornerRadii(new float[] { 20,20,20,20,20,20,20,20 });
-            shape.setCornerRadius(20);
-            if (type == Type.INFO){
-                tvTitle.setBackgroundColor(ContextCompat.getColor(context,R.color.info));
-                tvTitle.setText(context.getResources().getString(R.string.info));
-                shape.setColor(ContextCompat.getColor(context,R.color.info));
-                shape.setStroke(3, ContextCompat.getColor(context,R.color.info));
-            }else if (type == Type.ERROR){
-                tvTitle.setBackgroundColor(ContextCompat.getColor(context,R.color.error));
-                tvTitle.setText(context.getResources().getString(R.string.error));
-                shape.setColor(ContextCompat.getColor(context,R.color.error));
-                shape.setStroke(3, ContextCompat.getColor(context,R.color.error));
-            }else  if (type == Type.WARNING){
-                tvTitle.setBackgroundColor(ContextCompat.getColor(context,R.color.warning));
-                tvTitle.setText(context.getResources().getString(R.string.warning));
-                shape.setColor(ContextCompat.getColor(context,R.color.warning));
-                shape.setStroke(3, ContextCompat.getColor(context,R.color.warning));
-            }else if (type == Type.DIALOG){
-                tvTitle.setBackgroundColor(ContextCompat.getColor(context,R.color.primary));
-                tvTitle.setText(context.getResources().getString(R.string.dialog));
-                shape.setColor(ContextCompat.getColor(context,R.color.primary));
-                shape.setStroke(3, ContextCompat.getColor(context,R.color.primary));
-            }
-            btOk.setBackground(shape);
-            btCancel.setBackground(shape);
+            btOk.setBackground(getShape());
+            btCancel.setBackground(getShape());
 
             tvTitle.setVisibility(View.VISIBLE);
             lawWarning.setVisibility(View.VISIBLE);
@@ -116,6 +127,35 @@ public class FastDialogBuilder {
             btOk.setVisibility(View.GONE);
         }
         return this;
+    }
+    private GradientDrawable getShape(){
+        GradientDrawable shape =  new GradientDrawable();
+        shape.setShape(GradientDrawable.RECTANGLE);
+        //shape.setCornerRadii(new float[] { 20,20,20,20,20,20,20,20 });
+        shape.setCornerRadius(20);
+        if (type == Type.INFO){
+            tvTitle.setBackgroundColor(ContextCompat.getColor(context,R.color.info));
+            tvTitle.setText(context.getResources().getString(R.string.info));
+            shape.setColor(ContextCompat.getColor(context,R.color.info));
+            shape.setStroke(3, ContextCompat.getColor(context,R.color.info));
+        }else if (type == Type.ERROR){
+            tvTitle.setBackgroundColor(ContextCompat.getColor(context,R.color.error));
+            tvTitle.setText(context.getResources().getString(R.string.error));
+            shape.setColor(ContextCompat.getColor(context,R.color.error));
+            shape.setStroke(3, ContextCompat.getColor(context,R.color.error));
+        }else  if (type == Type.WARNING){
+            tvTitle.setBackgroundColor(ContextCompat.getColor(context,R.color.warning));
+            tvTitle.setText(context.getResources().getString(R.string.warning));
+            shape.setColor(ContextCompat.getColor(context,R.color.warning));
+            shape.setStroke(3, ContextCompat.getColor(context,R.color.warning));
+        }else{
+            tvTitle.setBackgroundColor(ContextCompat.getColor(context,R.color.primary));
+            tvTitle.setText(context.getResources().getString(R.string.dialog));
+            shape.setColor(ContextCompat.getColor(context,R.color.primary));
+            shape.setStroke(3, ContextCompat.getColor(context,R.color.primary));
+       }
+
+        return shape;
     }
     public FastDialogBuilder changeColor(int colorItem,int colorItemText,int colorText){
         tvTitle.setBackgroundColor(colorItem);
@@ -189,6 +229,13 @@ public class FastDialogBuilder {
         etWarning.setVisibility(View.VISIBLE);
         etWarning.setHint(hint);
         etWarningDecimal.setHint(hint);
+        return this;
+    }
+    public FastDialogBuilder loginWithEmail(){
+        etUsername.setHint(context.getResources().getString(R.string.email));
+        Drawable img = context.getResources().getDrawable( R.drawable.ic_email_black );
+        img.setBounds( 0, 0, 45, 45 );
+        etUsername.setCompoundDrawables(img,null,null,null);
         return this;
     }
     public FastDialogBuilder negativeText(String negative){

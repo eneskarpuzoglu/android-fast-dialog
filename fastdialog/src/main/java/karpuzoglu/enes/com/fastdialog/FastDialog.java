@@ -32,6 +32,9 @@ public class FastDialog{
     public static FastDialogBuilder p(Context context){
         return new FastDialogBuilder(context,Type.PROGRESS);
     }
+    public static FastDialogBuilder l(Context context){
+        return new FastDialogBuilder(context,Type.LOGIN);
+    }
     public void show(){
         if (builder.getDialog().isShowing()) return;
         builder.getDialog().show();
@@ -65,5 +68,21 @@ public class FastDialog{
     public void dismissListener(DismissListener dismissListener){builder.setDismissListener(dismissListener);}
     public boolean isShowing(){
         return builder.getDialog().isShowing();
+    }
+    public String getUsernameOrEmail(){
+        String text = null;
+        if (builder.getType() == Type.LOGIN){
+            ClearableEditText etUsername = builder.getDialog().findViewById(R.id.login_dialog_username);
+            text = etUsername.getText().toString().trim();
+        }
+        return text;
+    }
+    public String getPassword(){
+        String text = null;
+        if (builder.getType() == Type.LOGIN){
+            ClearableEditText etPassword = builder.getDialog().findViewById(R.id.login_dialog_password);
+            text = etPassword.getText().toString().trim();
+        }
+        return text;
     }
 }

@@ -83,6 +83,8 @@ Provides you easily create various pop-up dialogs that you can use.
 	show() //show dialog
 	dismiss() //dismiss dialog
 	getInputText() // get dialog EditText's text
+	getUsernameOrEmail() //get Username or Email from login dialog
+	getPassword() // get Password from login dialog
 	setProgressText(String str) // set Progress dialog text
 	 
 ```
@@ -101,18 +103,24 @@ Provides you easily create various pop-up dialogs that you can use.
                 .create()
                 .show();
 ```
-<img width="300px" src="images/error1.png" align="center"/>
+<img width="300px" src="images/error.gif" align="center"/>
 
->  Error Dialog 2
+>  Login Dialog
 ```java
-	FastDialog.e(this)
-                .setText("Error Message")
-                .hideIcon()
-                .positiveText("OK")
-                .create()
-                .show();
+	FastDialog dialog = new FastDialogBuilder(this,Type.LOGIN)
+                //.loginWithEmail()
+                .setTitleText("Login")
+                .create();
+        dialog.positiveClickListener(new PositiveClick() {
+            @Override
+            public void onClick(View view) {
+                String string = dialog.getUsernameOrEmail() +" - "+dialog.getPassword();
+                Toast.makeText(MainActivity.this,string,Toast.LENGTH_SHORT).show();
+            }
+        });
+        dialog.show();
 ```
-<img width="300px" src="images/error2.png" align="center"/>
+<img width="300px" src="images/login.gif" align="center"/>
 
 >  Warning Dialog position center, grown in animation with EditText
 ```java

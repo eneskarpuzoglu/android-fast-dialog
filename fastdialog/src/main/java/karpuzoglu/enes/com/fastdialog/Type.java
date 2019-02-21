@@ -8,5 +8,6 @@ public enum Type {
     ERROR,
     WARNING,
     DIALOG,
-    PROGRESS
+    PROGRESS,
+    LOGIN
 }
