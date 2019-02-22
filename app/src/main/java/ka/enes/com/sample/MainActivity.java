@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 .setTitleText("Warning")
                 .setText("Warning Text")
                 .setHint("please enter text")
+                .privateEditText()
                 .setAnimation(Animations.GROW_IN)
                 .positiveText("Accept")
                 .create()

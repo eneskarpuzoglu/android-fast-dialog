@@ -8,13 +8,11 @@ import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.text.InputFilter;
+import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -272,6 +270,12 @@ public class FastDialogBuilder {
     }
     public FastDialogBuilder cancelable(boolean bool){
         dialog.setCancelable(bool);
+        return this;
+    }
+
+    public FastDialogBuilder privateEditText(){
+        etWarning.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        etWarningDecimal.setTransformationMethod(PasswordTransformationMethod.getInstance());
         return this;
     }
     public FastDialogBuilder setInputText(String str){

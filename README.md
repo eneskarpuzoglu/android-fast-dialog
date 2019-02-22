@@ -31,7 +31,7 @@ Provides you easily create various pop-up dialogs that you can use.
 
 > Create `FastDialog` use to `FastDialogBuilder`
 ```java
-	FastDialog dialog = new FastDialogBuilder(this,Type type)
+	FastDialog dialog = new FastDialogBuilder(Context contex,Type type)
 ```
 > FastDialogBuilder Functions
 ```java
@@ -49,6 +49,7 @@ Provides you easily create various pop-up dialogs that you can use.
 	 setFullScreen(boolean bool) // set fullscreen to dialog window. default true
 	 changeColor(int colorButtonsAndTitle,int colorButtonsAndTitleText,int colorPrimaryText) // change fast-dialog colors
      setInputText(String str) // set EditText input
+	 privateEditText() // set the edittext type to password
 		//Animations
 	 setAnimation(Animations animation)
 		// Animations.SLIDE_LEFT
@@ -76,6 +77,7 @@ Provides you easily create various pop-up dialogs that you can use.
 	w(this) // create warning dialog
 	d(this) // create normal dialog
 	p(this) // create progress dialog
+	l(this) // create login dialog
 	positiveClickListener(PositiveClick click) // set listener to positive button
 	negativeClickListener(NegativeClick click) // set listener to negative button	
 	dismissListener(DismissListener dismissListener) // set dismiss listener to fast-dialog
@@ -128,6 +130,7 @@ Provides you easily create various pop-up dialogs that you can use.
                 .setTitleText("Warning")
                 .setText("Warning Text")
                 .setHint("please enter text")
+                .privateEditText()
                 .setAnimation(Animations.GROW_IN)
                 .positiveText("Accept")
                 .create()
