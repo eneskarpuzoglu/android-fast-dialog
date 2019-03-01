@@ -110,19 +110,19 @@ Provides you easily create various pop-up dialogs that you can use.
 >  Simple Error Dialog
 ```java
 	FastDialog.e(this)
-                .setText("Error Dialog")
-                .hideTitle()
-                .create()
-                .show();
+		.setText("Error Dialog")
+		.hideTitle()
+		.create()
+		.show();
 ```
 <img width="300px" src="images/error.gif" align="center"/>
 
 >  Login Dialog
 ```java
 	FastDialog dialog = new FastDialogBuilder(this,Type.LOGIN)
-                //.loginWithEmail()
-                .setTitleText("Login")
-                .create();
+		//.loginWithEmail()
+		.setTitleText("Login")
+		.create();
 	dialog.positiveClickListener(new PositiveClick() {
 		@Override
 		public void onClick(View view) {
@@ -136,45 +136,45 @@ Provides you easily create various pop-up dialogs that you can use.
 
 >  Warning Dialog position center, grown in animation with EditText
 ```java
-        FastDialog.w(this)
-                .setTitleText("Warning")
-                .setText("Warning Text")
-                .setHint("please enter text")
-                .privateEditText()
-                .setAnimation(Animations.GROW_IN)
-                .positiveText("Accept")
-                .create()
-                .show();
+	FastDialog.w(this)
+		.setTitleText("Warning")
+		.setText("Warning Text")
+		.setHint("please enter text")
+		.privateEditText()
+		.setAnimation(Animations.GROW_IN)
+		.positiveText("Accept")
+		.create()
+		.show();
 ```
 <img width="300px" src="images/warning.gif" align="center"/>
 
 >  Normal Dialog position center, fade in animation with DecimalEditText
 ```java
-		FastDialog.d(this)
-                .setTitleText("Dialog")
-                .setText("Dialog Text")
-                .setHint("please enter number")
-                .decimalEditText()
-                .setAnimation(Animations.FADE_IN)
-                .positiveText("Ok")
-                .negativeText("Cancel")
-                .setInputText("55")
-                .setTextMaxLenght(16)
-                .cancelable(false)
-                .create()
-                .show();
+	FastDialog.d(this)
+		.setTitleText("Dialog")
+		.setText("Dialog Text")
+		.setHint("please enter number")
+		.decimalEditText()
+		.setAnimation(Animations.FADE_IN)
+		.positiveText("Ok")
+		.negativeText("Cancel")
+		.setInputText("55")
+		.setTextMaxLenght(16)
+		.cancelable(false)
+		.create()
+		.show();
 ```
 <img width="300px" src="images/input_number.gif" align="center"/>
 
 >  Information Dialog position bottom, slide bottom animation and listener positive button and dismiss listener
 ```java
 	FastDialog dialog = new FastDialogBuilder(this,Type.INFO)
-                .setTitleText("Information")
-                .setText("Information Text")
-                .positiveText("Ok")
-                .setAnimation(Animations.SLIDE_BOTTOM)
-                .setPosition(Positions.BOTTOM)
-                .create();
+		.setTitleText("Information")
+		.setText("Information Text")
+		.positiveText("Ok")
+		.setAnimation(Animations.SLIDE_BOTTOM)
+		.setPosition(Positions.BOTTOM)
+		.create();
 	dialog.positiveClickListener(new PositiveClick() {
 		@Override
 		public void onClick(View view) {
@@ -195,17 +195,17 @@ Provides you easily create various pop-up dialogs that you can use.
 >  Warning Colored Dialog position top, slide top animation and listener positive button
 ```java
 	FastDialog dialog= new FastDialogBuilder(this,Type.DIALOG)
-                .setTitleText("Warning")
-                .setText("Warning Text")
-                .positiveText("Ok")
-                .negativeText("Cancel")
-                .changeColor(ContextCompat.getColor(getApplicationContext(),R.color.different),
-                        ContextCompat.getColor(getApplicationContext(),R.color.text2),
-                        ContextCompat.getColor(getApplicationContext(),R.color.text))
-                .setHint("please enter your name")
-                .setAnimation(Animations.SLIDE_TOP)
-                .setPosition(Positions.TOP)
-                .create();
+		.setTitleText("Warning")
+		.setText("Warning Text")
+		.positiveText("Ok")
+		.negativeText("Cancel")
+		.changeColor(ContextCompat.getColor(getApplicationContext(),R.color.different),
+				ContextCompat.getColor(getApplicationContext(),R.color.text2),
+				ContextCompat.getColor(getApplicationContext(),R.color.text))
+		.setHint("please enter your name")
+		.setAnimation(Animations.SLIDE_TOP)
+		.setPosition(Positions.TOP)
+		.create();
 	dialog.positiveClickListener(new PositiveClick() {
 		@Override
 		public void onClick(View view) {
@@ -225,14 +225,14 @@ Provides you easily create various pop-up dialogs that you can use.
 	buttons.add(button);
 	buttons.add(button2);
 	FastDialog.f(this)
-				.setActiveButtons(buttons)
-				.onClickListener((v, position) -> {
-					Toast.makeText(MainActivity.this,v.getTag()+"",Toast.LENGTH_SHORT).show();
-				})
-				.setAnimation(Animations.GROW_IN)
-				.setPosition(Positions.BOTTOM)
-				.create()
-				.show();
+		.setActiveButtons(buttons)
+		.onClickListener((v, position) -> {
+			Toast.makeText(MainActivity.this,v.getTag()+"",Toast.LENGTH_SHORT).show();
+		})
+		.setAnimation(Animations.GROW_IN)
+		.setPosition(Positions.BOTTOM)
+		.create()
+		.show();
 ```
 <img width="300px" src="images/folder.gif" align="center"/>
 
