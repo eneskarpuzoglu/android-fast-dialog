@@ -45,12 +45,9 @@ public class MainActivity extends AppCompatActivity {
                 //.loginWithEmail()
                 .setTitleText("Login")
                 .create();
-        dialog.positiveClickListener(new PositiveClick() {
-            @Override
-            public void onClick(View view) {
-                String string = dialog.getUsernameOrEmail() +" - "+dialog.getPassword();
-                Toast.makeText(MainActivity.this,string,Toast.LENGTH_SHORT).show();
-            }
+        dialog.positiveClickListener(view1 -> {
+            String string = dialog.getUsernameOrEmail() +" - "+dialog.getPassword();
+            Toast.makeText(MainActivity.this,string,Toast.LENGTH_SHORT).show();
         });
         dialog.show();
     }
@@ -88,19 +85,11 @@ public class MainActivity extends AppCompatActivity {
                 .setAnimation(Animations.SLIDE_BOTTOM)
                 .setPosition(Positions.BOTTOM)
                 .create();
-        dialog.positiveClickListener(new PositiveClick() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this,"Ok Pressed",Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            }
+        dialog.positiveClickListener(view1 -> {
+            Toast.makeText(MainActivity.this,"Ok Pressed",Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
         });
-        dialog.dismissListener(new DismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                FastDialog.i(MainActivity.this).setText("Closed").setFullScreen(false).create().show();
-            }
-        });
+        dialog.dismissListener(dialog -> FastDialog.i(MainActivity.this).setText("Closed").setFullScreen(false).create().show());
         dialog.show();
     }
     public void topAnim(View view){
@@ -123,8 +112,8 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
     public void buttonFolder(View view){
-        FolderButton button = new FolderButton("1", "one", 0, R.drawable.ic_android);
-        FolderButton button2 = new FolderButton("2", "two", 1, R.drawable.ic_android);
+        FolderButton button = new FolderButton("1", "one", 0, R.drawable.other_white);
+        FolderButton button2 = new FolderButton("2", "two", 1, R.drawable.other_white2);
         List<FolderButton> buttons = new ArrayList<>();
         buttons.add(button);
         buttons.add(button2);
@@ -133,8 +122,8 @@ public class MainActivity extends AppCompatActivity {
                 .onClickListener((v, position) -> {
                     Toast.makeText(MainActivity.this,v.getTag()+"",Toast.LENGTH_SHORT).show();
                 })
-                .setAnimation(Animations.SLIDE_BOTTOM)
-                .setPosition(Positions.BOTTOM)
+                .setAnimation(Animations.GROW_IN)
+                .setPosition(Positions.CENTER)
                 .create();
         dialog.show();
     }

@@ -15,6 +15,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -281,12 +282,7 @@ public class FastDialogBuilder {
         negativeClick = click;
     }
     public void setDismissListener(final DismissListener dismissListener){
-        dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                dismissListener.onDismiss(dialog);
-            }
-        });
+        dialog.setOnDismissListener(dialog -> dismissListener.onDismiss(dialog));
     }
     public FastDialogBuilder cancelable(boolean bool){
         dialog.setCancelable(bool);
