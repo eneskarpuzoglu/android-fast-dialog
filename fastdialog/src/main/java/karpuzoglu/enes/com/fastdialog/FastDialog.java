@@ -35,6 +35,9 @@ public class FastDialog{
     public static FastDialogBuilder l(Context context){
         return new FastDialogBuilder(context,Type.LOGIN);
     }
+    public static FastDialogBuilder f(Context context){
+        return new FastDialogBuilder(context,Type.FOLDER);
+    }
     public void show(){
         if (builder.getDialog().isShowing()) return;
         builder.getDialog().show();

@@ -117,14 +117,14 @@ public class MainActivity extends AppCompatActivity {
         List<FolderButton> buttons = new ArrayList<>();
         buttons.add(button);
         buttons.add(button2);
-        dialog = new FastDialogBuilder(this,Type.FOLDER)
+        FastDialog.f(this)
                 .setActiveButtons(buttons)
                 .onClickListener((v, position) -> {
                     Toast.makeText(MainActivity.this,v.getTag()+"",Toast.LENGTH_SHORT).show();
                 })
                 .setAnimation(Animations.GROW_IN)
-                .setPosition(Positions.CENTER)
-                .create();
-        dialog.show();
+                .setPosition(Positions.BOTTOM)
+                .create()
+                .show();
     }
 }

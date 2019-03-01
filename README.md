@@ -33,6 +33,15 @@ Provides you easily create various pop-up dialogs that you can use.
 ```java
 	FastDialog dialog = new FastDialogBuilder(Context contex,Type type)
 ```
+> Dialog Types
+	-  INFO
+    -  ERROR
+    -  WARNING
+    -  DIALOG
+    -  PROGRESS
+    -  LOGIN
+    -  FOLDER
+	
 > FastDialogBuilder Functions
 ```java
 	 progressText(String progressString) // sets progress dialog text
@@ -72,12 +81,13 @@ Provides you easily create various pop-up dialogs that you can use.
 > FastDialog Functions
 
 ```java
-	i(this) // create information dialog
-	e(this) // create error dialog
-	w(this) // create warning dialog
-	d(this) // create normal dialog
-	p(this) // create progress dialog
-	l(this) // create login dialog
+	i(Context contex) // create information dialog
+	e(Context contex) // create error dialog
+	w(Context contex) // create warning dialog
+	d(Context contex) // create normal dialog
+	p(Context contex) // create progress dialog
+	l(Context contex) // create login dialog
+	f(Context contex) // create button folder dialog
 	positiveClickListener(PositiveClick click) // set listener to positive button
 	negativeClickListener(NegativeClick click) // set listener to negative button	
 	dismissListener(DismissListener dismissListener) // set dismiss listener to fast-dialog
@@ -113,14 +123,14 @@ Provides you easily create various pop-up dialogs that you can use.
                 //.loginWithEmail()
                 .setTitleText("Login")
                 .create();
-        dialog.positiveClickListener(new PositiveClick() {
-            @Override
-            public void onClick(View view) {
-                String string = dialog.getUsernameOrEmail() +" - "+dialog.getPassword();
-                Toast.makeText(MainActivity.this,string,Toast.LENGTH_SHORT).show();
-            }
-        });
-        dialog.show();
+	dialog.positiveClickListener(new PositiveClick() {
+		@Override
+		public void onClick(View view) {
+			String string = dialog.getUsernameOrEmail() +" - "+dialog.getPassword();
+			Toast.makeText(MainActivity.this,string,Toast.LENGTH_SHORT).show();
+		}
+	});
+	dialog.show();
 ```
 <img width="300px" src="images/login.gif" align="center"/>
 
@@ -165,20 +175,20 @@ Provides you easily create various pop-up dialogs that you can use.
                 .setAnimation(Animations.SLIDE_BOTTOM)
                 .setPosition(Positions.BOTTOM)
                 .create();
-        dialog.positiveClickListener(new PositiveClick() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(MainActivity.this,"Ok Pressed",Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
-            }
-        });
-        dialog.dismissListener(new DismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                FastDialog.i(MainActivity.this).setText("Closed").hideTitle().create().show();
-            }
-        });
-        dialog.show();
+	dialog.positiveClickListener(new PositiveClick() {
+		@Override
+		public void onClick(View view) {
+			Toast.makeText(MainActivity.this,"Ok Pressed",Toast.LENGTH_SHORT).show();
+			dialog.dismiss();
+		}
+	});
+	dialog.dismissListener(new DismissListener() {
+		@Override
+		public void onDismiss(DialogInterface dialog) {
+			FastDialog.i(MainActivity.this).setText("Closed").hideTitle().create().show();
+		}
+	});
+	dialog.show();
 ```
 <img width="300px" src="images/bottom_dialog.gif" align="center"/>
 
@@ -196,16 +206,35 @@ Provides you easily create various pop-up dialogs that you can use.
                 .setAnimation(Animations.SLIDE_TOP)
                 .setPosition(Positions.TOP)
                 .create();
-        dialog.positiveClickListener(new PositiveClick() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-                Toast.makeText(MainActivity.this,dialog.getInputText().equals("")?"EditText is Empty":dialog.getInputText(),Toast.LENGTH_SHORT).show();
-            }
-        });
-        dialog.show();
+	dialog.positiveClickListener(new PositiveClick() {
+		@Override
+		public void onClick(View view) {
+			dialog.dismiss();
+			Toast.makeText(MainActivity.this,dialog.getInputText().equals("")?"EditText is Empty":dialog.getInputText(),Toast.LENGTH_SHORT).show();
+		}
+	});
+	dialog.show();
 ```
 <img width="300px" src="images/top_dialog.gif" align="center"/>
+
+>  Button Folder Dialog position bottom, grow in animation and listener click buttons
+```java
+	FolderButton button = new FolderButton("1", "one", 0, R.drawable.other_white);
+	FolderButton button2 = new FolderButton("2", "two", 1, R.drawable.other_white2);
+	List<FolderButton> buttons = new ArrayList<>();
+	buttons.add(button);
+	buttons.add(button2);
+	FastDialog.f(this)
+				.setActiveButtons(buttons)
+				.onClickListener((v, position) -> {
+					Toast.makeText(MainActivity.this,v.getTag()+"",Toast.LENGTH_SHORT).show();
+				})
+				.setAnimation(Animations.GROW_IN)
+				.setPosition(Positions.BOTTOM)
+				.create()
+				.show();
+```
+<img width="300px" src="images/folder.gif" align="center"/>
 
 ## License
 
