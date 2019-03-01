@@ -7,10 +7,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import karpuzoglu.enes.com.fastdialog.Animations;
+import karpuzoglu.enes.com.fastdialog.CustomItemClickListener;
 import karpuzoglu.enes.com.fastdialog.DismissListener;
 import karpuzoglu.enes.com.fastdialog.FastDialog;
 import karpuzoglu.enes.com.fastdialog.FastDialogBuilder;
+import karpuzoglu.enes.com.fastdialog.FolderButton;
 import karpuzoglu.enes.com.fastdialog.Positions;
 import karpuzoglu.enes.com.fastdialog.PositiveClick;
 import karpuzoglu.enes.com.fastdialog.Type;
@@ -111,13 +116,26 @@ public class MainActivity extends AppCompatActivity {
                 .setAnimation(Animations.SLIDE_TOP)
                 .setPosition(Positions.TOP)
                 .create();
-        dialog.positiveClickListener(new PositiveClick() {
-            @Override
-            public void onClick(View view) {
-                dialog.dismiss();
-                Toast.makeText(MainActivity.this,dialog.getInputText().equals("")?"EditText is Empty":dialog.getInputText(),Toast.LENGTH_SHORT).show();
-            }
+        dialog.positiveClickListener(view1 -> {
+            dialog.dismiss();
+            Toast.makeText(MainActivity.this,dialog.getInputText().equals("")?"EditText is Empty":dialog.getInputText(),Toast.LENGTH_SHORT).show();
         });
+        dialog.show();
+    }
+    public void buttonFolder(View view){
+        FolderButton button = new FolderButton("1", "one", 0, R.drawable.ic_android);
+        FolderButton button2 = new FolderButton("2", "two", 1, R.drawable.ic_android);
+        List<FolderButton> buttons = new ArrayList<>();
+        buttons.add(button);
+        buttons.add(button2);
+        dialog = new FastDialogBuilder(this,Type.FOLDER)
+                .setActiveButtons(buttons)
+                .onClickListener((v, position) -> {
+                    Toast.makeText(MainActivity.this,v.getTag()+"",Toast.LENGTH_SHORT).show();
+                })
+                .setAnimation(Animations.SLIDE_BOTTOM)
+                .setPosition(Positions.BOTTOM)
+                .create();
         dialog.show();
     }
 }

@@ -9,5 +9,6 @@ public enum Type {
     WARNING,
     DIALOG,
     PROGRESS,
-    LOGIN
+    LOGIN,
+    FOLDER
 }

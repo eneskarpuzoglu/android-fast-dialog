@@ -7,15 +7,20 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.InputFilter;
 import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
+
+import java.util.List;
 
 /**
  * Created by ENES on 7.12.2018.
@@ -36,6 +41,11 @@ public class FastDialogBuilder {
     private PositiveClick positiveClick;
     private NegativeClick negativeClick;
     private DismissListener dismissListener;
+
+    private FolderAdapter folderAdapter;
+    private LinearLayout folderLayout;
+    private RecyclerView rvFolder;
+
     private boolean isDecimal = false;
     private boolean fullScreen = true;
     private Type type;
@@ -55,38 +65,38 @@ public class FastDialogBuilder {
         if (type == Type.PROGRESS){
             dialog.setContentView(R.layout.progress_dialog);
             tvProgress = dialog.findViewById(R.id.wait_text);
-        }else if(type == Type.LOGIN){
+        }else if(type == Type.LOGIN) {
             dialog.setContentView(R.layout.login_dialog);
             tvTitle = dialog.findViewById(R.id.login_dialog_title);
             etUsername = dialog.findViewById(R.id.login_dialog_username);
             etPassword = dialog.findViewById(R.id.login_dialog_password);
-            Drawable imgPassword = context.getResources().getDrawable( R.drawable.ic_password_black );
-            imgPassword.setBounds( 0, 0, 45, 45 );
-            etPassword.setCompoundDrawables(imgPassword,null,null,null);
-            Drawable imgUser = context.getResources().getDrawable( R.drawable.ic_user_black );
-            imgUser.setBounds( 0, 0, 45, 45 );
-            etUsername.setCompoundDrawables(imgUser,null,null,null);
+            Drawable imgPassword = context.getResources().getDrawable(R.drawable.ic_password_black);
+            imgPassword.setBounds(0, 0, 45, 45);
+            etPassword.setCompoundDrawables(imgPassword, null, null, null);
+            Drawable imgUser = context.getResources().getDrawable(R.drawable.ic_user_black);
+            imgUser.setBounds(0, 0, 45, 45);
+            etUsername.setCompoundDrawables(imgUser, null, null, null);
             btCancel = dialog.findViewById(R.id.warning_dialog_cancel_bt);
             btOk = dialog.findViewById(R.id.warning_dialog_ok_bt);
-            btCancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(negativeClick != null)
-                        negativeClick.onClick(v);
-                    dialog.dismiss();
-                }
+            btCancel.setOnClickListener(v -> {
+                if (negativeClick != null)
+                    negativeClick.onClick(v);
+                dialog.dismiss();
             });
-            btOk.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(positiveClick != null)
-                        positiveClick.onClick(v);
-                    dialog.dismiss();
-                }
+            btOk.setOnClickListener(v -> {
+                if (positiveClick != null)
+                    positiveClick.onClick(v);
+                dialog.dismiss();
             });
             btOk.setBackground(getShape());
             btCancel.setBackground(getShape());
-
+        }else if(type == Type.FOLDER){
+            dialog.setContentView(R.layout.folder_dialog);
+            folderLayout = dialog.findViewById(R.id.folder_layout);
+            rvFolder = dialog.findViewById(R.id.folder_recylerview);
+            folderAdapter = new FolderAdapter(context,fullScreen);
+            rvFolder.setLayoutManager(new GridLayoutManager(context,5));
+            rvFolder.setAdapter(folderAdapter);
 
         }else{
             dialog.setContentView(R.layout.warning_dialog);
@@ -97,21 +107,15 @@ public class FastDialogBuilder {
             etWarningDecimal = dialog.findViewById(R.id.warning_dialog_et_decimal);
             btCancel = dialog.findViewById(R.id.warning_dialog_cancel_bt);
             btOk = dialog.findViewById(R.id.warning_dialog_ok_bt);
-            btCancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(negativeClick != null)
-                        negativeClick.onClick(v);
-                    dialog.dismiss();
-                }
+            btCancel.setOnClickListener(v -> {
+                if(negativeClick != null)
+                    negativeClick.onClick(v);
+                dialog.dismiss();
             });
-            btOk.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if(positiveClick != null)
-                        positiveClick.onClick(v);
-                    dialog.dismiss();
-                }
+            btOk.setOnClickListener(v -> {
+                if(positiveClick != null)
+                    positiveClick.onClick(v);
+                dialog.dismiss();
             });
             btOk.setBackground(getShape());
             btCancel.setBackground(getShape());
@@ -126,6 +130,7 @@ public class FastDialogBuilder {
         }
         return this;
     }
+
     private GradientDrawable getShape(){
         GradientDrawable shape =  new GradientDrawable();
         shape.setShape(GradientDrawable.RECTANGLE);
@@ -156,20 +161,35 @@ public class FastDialogBuilder {
         return shape;
     }
     public FastDialogBuilder changeColor(int colorItem,int colorItemText,int colorText){
-        tvTitle.setBackgroundColor(colorItem);
-        tvTitle.setTextColor(colorItemText);
-        tvWarning.setTextColor(colorText);
-        GradientDrawable shape =  new GradientDrawable();
-        shape.setShape(GradientDrawable.RECTANGLE);
-        //shape.setCornerRadii(new float[] { 20,20,20,20,20,20,20,20 });
-        shape.setCornerRadius(20);
-        shape.setColor(colorItem);
-        shape.setStroke(3, colorItem);
+        if (folderLayout != null) {
+            folderLayout.setBackgroundColor(colorItem);
+        }else{
+            tvTitle.setBackgroundColor(colorItem);
+            tvTitle.setTextColor(colorItemText);
+            tvWarning.setTextColor(colorText);
 
-        btCancel.setBackground(shape);
-        btOk.setBackground(shape);
-        btCancel.setTextColor(colorItemText);
-        btOk.setTextColor(colorItemText);
+            GradientDrawable shape =  new GradientDrawable();
+            shape.setShape(GradientDrawable.RECTANGLE);
+            //shape.setCornerRadii(new float[] { 20,20,20,20,20,20,20,20 });
+            shape.setCornerRadius(20);
+            shape.setColor(colorItem);
+            shape.setStroke(3, colorItem);
+
+            btCancel.setBackground(shape);
+            btOk.setBackground(shape);
+            btCancel.setTextColor(colorItemText);
+            btOk.setTextColor(colorItemText);
+        }
+        return this;
+    }
+    public FastDialogBuilder setActiveButtons(List<FolderButton> buttonList){
+        folderAdapter.setActiveButtons(buttonList);
+        folderAdapter.notifyDataSetChanged();
+        return this;
+    }
+    public FastDialogBuilder onClickListener(CustomItemClickListener listener){
+        folderAdapter.setClickListener(listener);
+        folderAdapter.notifyDataSetChanged();
         return this;
     }
     public FastDialogBuilder progressText(String progressString){
@@ -229,7 +249,7 @@ public class FastDialogBuilder {
         etWarningDecimal.setHint(hint);
         return this;
     }
-    public FastDialogBuilder loginWithEmail(){
+    public FastDialogBuilder loginWithSaleFooterAdapterEmail(){
         etUsername.setHint(context.getResources().getString(R.string.email));
         Drawable img = context.getResources().getDrawable( R.drawable.ic_email_black );
         img.setBounds( 0, 0, 45, 45 );
