@@ -73,7 +73,7 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/other_white2"
+            android:src="@drawable/ic_more"
             android:onClick="buttonFolder"
             />
     </LinearLayout>

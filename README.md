@@ -34,13 +34,13 @@ Provides you easily create various pop-up dialogs that you can use.
 	FastDialog dialog = new FastDialogBuilder(Context contex,Type type)
 ```
 > Dialog Types
-	-  INFO
-    -  ERROR
-    -  WARNING
-    -  DIALOG
-    -  PROGRESS
-    -  LOGIN
-    -  FOLDER
+-  INFO
+-  ERROR
+-  WARNING
+-  DIALOG
+-  PROGRESS
+-  LOGIN
+-  FOLDER
 	
 > FastDialogBuilder Functions
 ```java

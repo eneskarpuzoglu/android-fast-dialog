@@ -11,11 +11,29 @@
                   <entry key="vectorAssetStep">
                     <value>
                       <PersistentState>
+                        <option name="children">
+                          <map>
+                            <entry key="clipartAsset">
+                              <value>
+                                <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/navigation/ic_more_vert_black_24dp.xml" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                         <option name="values">
                           <map>
                             <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="ic_android" />
+                            <entry key="height" value="32" />
+                            <entry key="outputName" value="ic_more" />
+                            <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="C:\Users\USER" />
+                            <entry key="width" value="32" />
                           </map>
                         </option>
                       </PersistentState>
