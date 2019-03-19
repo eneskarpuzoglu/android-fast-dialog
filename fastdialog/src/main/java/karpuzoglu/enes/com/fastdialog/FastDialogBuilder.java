@@ -250,7 +250,7 @@ public class FastDialogBuilder {
         etWarningDecimal.setHint(hint);
         return this;
     }
-    public FastDialogBuilder loginWithSaleFooterAdapterEmail(){
+    public FastDialogBuilder loginWithEmail(){
         etUsername.setHint(context.getResources().getString(R.string.email));
         Drawable img = context.getResources().getDrawable( R.drawable.ic_email_black );
         img.setBounds( 0, 0, 45, 45 );
