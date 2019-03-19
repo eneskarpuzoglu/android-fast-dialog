@@ -167,8 +167,9 @@ public class FastDialogBuilder {
         }else{
             tvTitle.setBackgroundColor(colorItem);
             tvTitle.setTextColor(colorItemText);
-            tvWarning.setTextColor(colorText);
-
+            if (type != Type.LOGIN){
+                tvWarning.setTextColor(colorText);
+            }
             GradientDrawable shape =  new GradientDrawable();
             shape.setShape(GradientDrawable.RECTANGLE);
             //shape.setCornerRadii(new float[] { 20,20,20,20,20,20,20,20 });

@@ -44,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         dialog = new FastDialogBuilder(this,Type.LOGIN)
                 //.loginWithEmail()
                 .setTitleText("Login")
+                .changeColor(ContextCompat.getColor(getApplicationContext(),R.color.different),
+                        ContextCompat.getColor(getApplicationContext(),R.color.text2),
+                        ContextCompat.getColor(getApplicationContext(),R.color.text))
                 .create();
         dialog.positiveClickListener(view1 -> {
             String string = dialog.getUsernameOrEmail() +" - "+dialog.getPassword();
