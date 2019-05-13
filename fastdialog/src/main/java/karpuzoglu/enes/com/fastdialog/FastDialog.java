@@ -43,7 +43,7 @@ public class FastDialog{
         builder.getDialog().show();
     }
     public void dismiss(){
-        if (builder.getDialog().isShowing()) builder.getDialog().dismiss();
+        if (builder != null && builder.getDialog() != null && builder.getDialog().isShowing()) builder.getDialog().dismiss();
     }
     public String getInputText(){
         ClearableEditText etWarning = builder.getDialog().findViewById(R.id.warning_dialog_et);

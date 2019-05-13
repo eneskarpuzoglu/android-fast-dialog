@@ -167,7 +167,7 @@ public class FastDialogBuilder {
         }else{
             tvTitle.setBackgroundColor(colorItem);
             tvTitle.setTextColor(colorItemText);
-            if (type != Type.LOGIN){
+            if (type != Type.LOGIN && type != Type.FOLDER){
                 tvWarning.setTextColor(colorText);
             }
             GradientDrawable shape =  new GradientDrawable();
