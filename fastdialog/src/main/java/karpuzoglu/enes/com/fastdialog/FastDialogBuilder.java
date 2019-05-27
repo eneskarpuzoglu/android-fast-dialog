@@ -15,13 +15,12 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.GridLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by ENES on 7.12.2018.
@@ -184,7 +183,7 @@ public class FastDialogBuilder {
         }
         return this;
     }
-    public FastDialogBuilder setActiveButtons(List<FolderButton> buttonList){
+    public FastDialogBuilder setActiveButtons(ArrayList<FolderButton> buttonList){
         folderAdapter.setActiveButtons(buttonList);
         folderAdapter.notifyDataSetChanged();
         return this;

@@ -70,7 +70,12 @@ public class FastDialog{
     }
     public void dismissListener(DismissListener dismissListener){builder.setDismissListener(dismissListener);}
     public boolean isShowing(){
-        return builder.getDialog().isShowing();
+        if (builder != null && builder.getDialog() != null){
+            return builder.getDialog().isShowing();
+        }else{
+            return false;
+        }
+
     }
     public String getUsernameOrEmail(){
         String text = null;
