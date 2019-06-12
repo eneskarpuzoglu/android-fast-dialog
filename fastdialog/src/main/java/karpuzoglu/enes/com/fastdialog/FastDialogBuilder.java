@@ -2,13 +2,12 @@ package karpuzoglu.enes.com.fastdialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.InputFilter;
 import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
@@ -19,8 +18,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.shawnlin.numberpicker.NumberPicker;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  * Created by ENES on 7.12.2018.
@@ -35,6 +36,7 @@ public class FastDialogBuilder {
     private ClearableEditText etWarning;
     private ClearableEditText etWarningDecimal;
     private ClearableEditText etUsername;
+    private NumberPicker numberPicker;
     private ClearableEditText etPassword;
     private Button btCancel;
     private Button btOk;
@@ -98,7 +100,26 @@ public class FastDialogBuilder {
             rvFolder.setLayoutManager(new GridLayoutManager(context,5));
             rvFolder.setAdapter(folderAdapter);
 
-        }else{
+        }else if (type == Type.NUMBER_PICKER){
+            dialog.setContentView(R.layout.number_picker_dialog);
+            tvTitle = dialog.findViewById(R.id.dialog_title);
+            tvWarning = dialog.findViewById(R.id.picker_text);
+            numberPicker = dialog.findViewById(R.id.number_picker);
+            btCancel = dialog.findViewById(R.id.warning_dialog_cancel_bt);
+            btOk = dialog.findViewById(R.id.warning_dialog_ok_bt);
+            btCancel.setOnClickListener(v -> {
+                if(negativeClick != null)
+                    negativeClick.onClick(v);
+                dialog.dismiss();
+            });
+            btOk.setOnClickListener(v -> {
+                if(positiveClick != null)
+                    positiveClick.onClick(v);
+                dialog.dismiss();
+            });
+            btOk.setBackground(getShape());
+            btCancel.setBackground(getShape());
+        } else{
             dialog.setContentView(R.layout.warning_dialog);
             tvTitle = dialog.findViewById(R.id.warning_dialog_title);
             lawWarning = dialog.findViewById(R.id.warning_dialog_animation);
@@ -169,6 +190,10 @@ public class FastDialogBuilder {
             if (type != Type.LOGIN && type != Type.FOLDER){
                 tvWarning.setTextColor(colorText);
             }
+            if (type == Type.NUMBER_PICKER && numberPicker != null){
+                numberPicker.setSelectedTextColor(colorItem);
+                numberPicker.setDividerColor(colorItem);
+            }
             GradientDrawable shape =  new GradientDrawable();
             shape.setShape(GradientDrawable.RECTANGLE);
             //shape.setCornerRadii(new float[] { 20,20,20,20,20,20,20,20 });
@@ -199,31 +224,31 @@ public class FastDialogBuilder {
     }
     public FastDialogBuilder setAnimation(Animations animation){
         if (animation == Animations.SLIDE_LEFT){
-            dialog.getWindow().getAttributes().windowAnimations = R.style.dialog_slide_left;
+            Objects.requireNonNull(dialog.getWindow()).getAttributes().windowAnimations = R.style.dialog_slide_left;
         }else if(animation == Animations.SLIDE_RIGHT){
-            dialog.getWindow().getAttributes().windowAnimations = R.style.dialog_slide_right;
+            Objects.requireNonNull(dialog.getWindow()).getAttributes().windowAnimations = R.style.dialog_slide_right;
         }else if(animation == Animations.SLIDE_TOP){
-            dialog.getWindow().getAttributes().windowAnimations = R.style.dialog_slide_top;
+            Objects.requireNonNull(dialog.getWindow()).getAttributes().windowAnimations = R.style.dialog_slide_top;
         }else if(animation == Animations.SLIDE_BOTTOM){
-            dialog.getWindow().getAttributes().windowAnimations = R.style.dialog_slide_bottom;
+            Objects.requireNonNull(dialog.getWindow()).getAttributes().windowAnimations = R.style.dialog_slide_bottom;
         }else if(animation == Animations.FADE_IN){
-            dialog.getWindow().getAttributes().windowAnimations = R.style.dialog_fade_in;
+            Objects.requireNonNull(dialog.getWindow()).getAttributes().windowAnimations = R.style.dialog_fade_in;
         }else if(animation == Animations.GROW_IN){
-            dialog.getWindow().getAttributes().windowAnimations = R.style.dialog_grow_in;
+            Objects.requireNonNull(dialog.getWindow()).getAttributes().windowAnimations = R.style.dialog_grow_in;
         }
         return this;
     }
     public FastDialogBuilder setPosition(Positions position){
         if (position == Positions.CENTER){
-            dialog.getWindow().setGravity(Gravity.CENTER);
+            Objects.requireNonNull(dialog.getWindow()).setGravity(Gravity.CENTER);
         }else if (position == Positions.LEFT){
-            dialog.getWindow().setGravity(Gravity.START);
+            Objects.requireNonNull(dialog.getWindow()).setGravity(Gravity.START);
         }else if (position == Positions.RIGHT){
-            dialog.getWindow().setGravity(Gravity.END);
+            Objects.requireNonNull(dialog.getWindow()).setGravity(Gravity.END);
         }else if (position == Positions.TOP){
-            dialog.getWindow().setGravity(Gravity.TOP);
+            Objects.requireNonNull(dialog.getWindow()).setGravity(Gravity.TOP);
         }else if (position == Positions.BOTTOM){
-            dialog.getWindow().setGravity(Gravity.BOTTOM);
+            Objects.requireNonNull(dialog.getWindow()).setGravity(Gravity.BOTTOM);
         }
         return this;
     }
@@ -273,16 +298,16 @@ public class FastDialogBuilder {
         isDecimal = true;
         return this;
     }
-    public void positiveClickListener(PositiveClick click){
+    void positiveClickListener(PositiveClick click){
         btOk.setVisibility(View.VISIBLE);
         positiveClick = click;
     }
-    public void negativeClickListener(NegativeClick click){
+    void negativeClickListener(NegativeClick click){
         btCancel.setVisibility(View.VISIBLE);
         negativeClick = click;
     }
-    public void setDismissListener(final DismissListener dismissListener){
-        dialog.setOnDismissListener(dialog -> dismissListener.onDismiss(dialog));
+    void setDismissListener(final DismissListener dismissListener){
+        dialog.setOnDismissListener(dismissListener::onDismiss);
     }
     public FastDialogBuilder cancelable(boolean bool){
         dialog.setCancelable(bool);
@@ -307,26 +332,52 @@ public class FastDialogBuilder {
         return this;
     }
 
-    public FastDialogBuilder setTextMaxLenght(int lenght){
-        etWarning.setFilters(new InputFilter[] { new InputFilter.LengthFilter(lenght) });
-        etWarningDecimal.setFilters(new InputFilter[] { new InputFilter.LengthFilter(lenght) });
+    public FastDialogBuilder setTextMaxLength(int length){
+        etWarning.setFilters(new InputFilter[] { new InputFilter.LengthFilter(length) });
+        etWarningDecimal.setFilters(new InputFilter[] { new InputFilter.LengthFilter(length) });
         return this;
     }
+
+    public FastDialogBuilder setMinValue(int min){
+        if (numberPicker != null)
+            numberPicker.setMinValue(min);
+        return this;
+    }
+
+    public FastDialogBuilder setMaxValue(int max){
+        if (numberPicker != null)
+            numberPicker.setMaxValue(max);
+        return this;
+    }
+
+    public FastDialogBuilder setDefaultValue(int value){
+        if (numberPicker != null)
+            numberPicker.setValue(value);
+        return this;
+    }
+
+    public FastDialogBuilder setWrapSelectorWheel(boolean bool){
+        if (numberPicker != null)
+            numberPicker.setWrapSelectorWheel(bool);
+        return this;
+    }
+
+
     public FastDialog create(){
         if (fullScreen){
             WindowManager.LayoutParams lWindowParams = new WindowManager.LayoutParams();
-            lWindowParams.copyFrom(getDialog().getWindow().getAttributes());
+            lWindowParams.copyFrom(Objects.requireNonNull(getDialog().getWindow()).getAttributes());
             lWindowParams.width = WindowManager.LayoutParams.MATCH_PARENT;
             lWindowParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
-            dialog.getWindow().setAttributes(lWindowParams);
+            Objects.requireNonNull(dialog.getWindow()).setAttributes(lWindowParams);
         }
         return new FastDialog(this);
     }
-    public Dialog getDialog(){
+    Dialog getDialog(){
         return dialog;
     }
 
-    public Type getType() {
+    Type getType() {
         return type;
     }
 

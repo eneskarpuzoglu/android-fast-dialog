@@ -10,5 +10,6 @@ public enum Type {
     DIALOG,
     PROGRESS,
     LOGIN,
-    FOLDER
+    FOLDER,
+    NUMBER_PICKER
 }

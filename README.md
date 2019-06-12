@@ -41,6 +41,7 @@ Provides you easily create various pop-up dialogs that you can use.
 -  PROGRESS
 -  LOGIN
 -  FOLDER
+-  NUMBER_PICKER
 	
 > FastDialogBuilder Functions
 ```java
@@ -54,7 +55,11 @@ Provides you easily create various pop-up dialogs that you can use.
 	 positiveText(String positive) // set positive button on fast-dialog and set button text
 	 cancelable(boolean bool) // set cancelable to fast-dialog
 	 decimalEditText() // set EditText to decimalEditText
-	 setTextMaxLenght(int lenght) // set EditText max lenght
+	 setTextMaxLength(int length) // set EditText max length
+	 setMinValue(int min) // set number picker minimum value
+	 setMaxValue(int max) // set number picker maximum value
+	 setDefaultValue(int value) // set number picker default value
+	 setWrapSelectorWheel(boolean bool) // set number picker selector's wheel
 	 setFullScreen(boolean bool) // set fullscreen to dialog window. default true
 	 changeColor(int colorButtonsAndTitle,int colorButtonsAndTitleText,int colorPrimaryText) // change fast-dialog colors
      setInputText(String str) // set EditText input
@@ -88,15 +93,17 @@ Provides you easily create various pop-up dialogs that you can use.
 	p(Context contex) // create progress dialog
 	l(Context contex) // create login dialog
 	f(Context contex) // create button folder dialog
+	n(Context contex) // create number picker dialog
 	positiveClickListener(PositiveClick click) // set listener to positive button
 	negativeClickListener(NegativeClick click) // set listener to negative button	
 	dismissListener(DismissListener dismissListener) // set dismiss listener to fast-dialog
 	isShowing() // return is fast-dialog showing
 	show() //show dialog
 	dismiss() //dismiss dialog
-	getInputText() // get dialog EditText's text
-	getUsernameOrEmail() //get Username or Email from login dialog
-	getPassword() // get Password from login dialog
+	getInputText() // get dialog EditText's text (String)
+	getNumberValue() // get number picker dialog's value (int)
+	getUsernameOrEmail() //get Username or Email from login dialog (String)
+	getPassword() // get Password from login dialog (String)
 	setProgressText(String str) // set Progress dialog text
 	 
 ```
@@ -165,6 +172,30 @@ Provides you easily create various pop-up dialogs that you can use.
 		.show();
 ```
 <img width="300px" src="images/input_number.gif" align="center"/>
+
+>  Number Picker Dialog position center, slide top animation
+```java
+	FastDialog dialog = new FastDialogBuilder(this,Type.NUMBER_PICKER)
+        .setText("Choice Number")
+        .setAnimation(Animations.SLIDE_TOP)
+        .changeColor(ContextCompat.getColor(getApplicationContext(),R.color.different),
+                ContextCompat.getColor(getApplicationContext(),R.color.text2),
+                ContextCompat.getColor(getApplicationContext(),R.color.text))
+        .positiveText("Ok")
+        .negativeText("Cancel")
+        .setMaxValue(15)
+        .setMinValue(1)
+        .setDefaultValue(5)
+        .setWrapSelectorWheel(false)
+        .cancelable(false)
+        .create();
+    dialog.positiveClickListener(view1 -> {
+        Toast.makeText(MainActivity.this,dialog.getNumberValue()+"",Toast.LENGTH_SHORT).show();
+        dialog.dismiss();
+    });
+    dialog.show();
+```
+<img width="300px" src="images/number_picker.gif" align="center"/>
 
 >  Information Dialog position bottom, slide bottom animation and listener positive button and dismiss listener
 ```java

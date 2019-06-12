@@ -1,23 +1,18 @@
 package ka.enes.com.sample;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import karpuzoglu.enes.com.fastdialog.Animations;
-import karpuzoglu.enes.com.fastdialog.CustomItemClickListener;
-import karpuzoglu.enes.com.fastdialog.DismissListener;
 import karpuzoglu.enes.com.fastdialog.FastDialog;
 import karpuzoglu.enes.com.fastdialog.FastDialogBuilder;
 import karpuzoglu.enes.com.fastdialog.FolderButton;
 import karpuzoglu.enes.com.fastdialog.Positions;
-import karpuzoglu.enes.com.fastdialog.PositiveClick;
 import karpuzoglu.enes.com.fastdialog.Type;
 
 
@@ -75,10 +70,31 @@ public class MainActivity extends AppCompatActivity {
                 .positiveText("Ok")
                 .negativeText("Cancel")
                 .setInputText("55")
-                .setTextMaxLenght(16)
+                .setTextMaxLength(16)
                 .cancelable(false)
                 .create()
                 .show();
+    }
+    public void picker(View view){
+        dialog = new FastDialogBuilder(this,Type.NUMBER_PICKER)
+                .setText("Choice Number")
+                .setAnimation(Animations.SLIDE_TOP)
+                .changeColor(ContextCompat.getColor(getApplicationContext(),R.color.different),
+                        ContextCompat.getColor(getApplicationContext(),R.color.text2),
+                        ContextCompat.getColor(getApplicationContext(),R.color.text))
+                .positiveText("Ok")
+                .negativeText("Cancel")
+                .setMaxValue(15)
+                .setMinValue(1)
+                .setDefaultValue(5)
+                .setWrapSelectorWheel(false)
+                .cancelable(false)
+                .create();
+        dialog.positiveClickListener(view1 -> {
+            Toast.makeText(MainActivity.this,dialog.getNumberValue()+"",Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+        });
+        dialog.show();
     }
     public void bottomAnim(View view){
         dialog = new FastDialogBuilder(this,Type.INFO)
@@ -117,7 +133,7 @@ public class MainActivity extends AppCompatActivity {
     public void buttonFolder(View view){
         FolderButton button = new FolderButton("1", "one", 0, R.drawable.other_white);
         FolderButton button2 = new FolderButton("2", "two", 1, R.drawable.other_white2);
-        List<FolderButton> buttons = new ArrayList<>();
+        ArrayList<FolderButton> buttons = new ArrayList<>();
         buttons.add(button);
         buttons.add(button2);
         FastDialog.f(this)

@@ -50,6 +50,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAllCaps="false"
+            android:onClick="picker"
+            android:text="Number Picker Dialog"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
             android:onClick="bottomAnim"
             android:text="Bottom Animation Dialog"
             />

@@ -1,11 +1,9 @@
 package karpuzoglu.enes.com.fastdialog;
 
 import android.content.Context;
-import android.text.InputFilter;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
+
+import com.shawnlin.numberpicker.NumberPicker;
 
 /**
  * Created by ENES on 7.12.2018.
@@ -38,6 +36,9 @@ public class FastDialog{
     public static FastDialogBuilder f(Context context){
         return new FastDialogBuilder(context,Type.FOLDER);
     }
+    public static FastDialogBuilder n(Context context){
+        return new FastDialogBuilder(context,Type.NUMBER_PICKER);
+    }
     public void show(){
         if (builder.getDialog().isShowing()) return;
         builder.getDialog().show();
@@ -55,6 +56,10 @@ public class FastDialog{
             text =  etWarningDecimal.getText().toString().trim();
         }
         return text;
+    }
+    public Integer getNumberValue(){
+        NumberPicker numberPicker = builder.getDialog().findViewById(R.id.number_picker);
+        return (Integer) numberPicker.getValue();
     }
     public void setProgressText(String str){
         if (builder.getType() == Type.PROGRESS){
