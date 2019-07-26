@@ -1,5 +1,7 @@
 package karpuzoglu.enes.com.fastdialog;
 
+import android.app.Activity;
+import android.app.Application;
 import android.content.Context;
 import android.widget.TextView;
 
@@ -43,7 +45,16 @@ public class FastDialog{
         if (builder.getDialog().isShowing()) return;
         builder.getDialog().show();
     }
+    public void show(Activity activity){
+        if (activity.isFinishing()) return;
+        if (builder.getDialog().isShowing()) return;
+        builder.getDialog().show();
+    }
     public void dismiss(){
+        if (builder != null && builder.getDialog() != null && builder.getDialog().isShowing()) builder.getDialog().dismiss();
+    }
+    public void dismiss(Activity activity){
+        if (activity.isFinishing()) return;
         if (builder != null && builder.getDialog() != null && builder.getDialog().isShowing()) builder.getDialog().dismiss();
     }
     public String getInputText(){
