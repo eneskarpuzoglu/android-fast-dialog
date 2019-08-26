@@ -55,6 +55,7 @@ Provides you easily create various pop-up dialogs that you can use.
 	 positiveText(String positive) // set positive button on fast-dialog and set button text
 	 cancelable(boolean bool) // set cancelable to fast-dialog
 	 decimalEditText() // set EditText to decimalEditText
+	 numberEditText() // set EditText to numberEditText
 	 setTextMaxLength(int length) // set EditText max length
 	 setMinValue(int min) // set number picker minimum value
 	 setMaxValue(int max) // set number picker maximum value
@@ -161,7 +162,8 @@ Provides you easily create various pop-up dialogs that you can use.
 		.setTitleText("Dialog")
 		.setText("Dialog Text")
 		.setHint("please enter number")
-		.decimalEditText()
+		//.decimalEditText()
+		.numberEditText()
 		.setAnimation(Animations.FADE_IN)
 		.positiveText("Ok")
 		.negativeText("Cancel")

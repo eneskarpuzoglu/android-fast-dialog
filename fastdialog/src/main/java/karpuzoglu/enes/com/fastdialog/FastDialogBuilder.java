@@ -35,6 +35,7 @@ public class FastDialogBuilder {
     private TextView tvWarning;
     private ClearableEditText etWarning;
     private ClearableEditText etWarningDecimal;
+    private ClearableEditText etWarningNumber;
     private ClearableEditText etUsername;
     private NumberPicker numberPicker;
     private ClearableEditText etPassword;
@@ -49,6 +50,7 @@ public class FastDialogBuilder {
     private RecyclerView rvFolder;
 
     private boolean isDecimal = false;
+    private boolean isNumber = false;
     private boolean fullScreen = true;
     private Type type;
 
@@ -126,6 +128,7 @@ public class FastDialogBuilder {
             tvWarning = dialog.findViewById(R.id.warning_dialog_text);
             etWarning = dialog.findViewById(R.id.warning_dialog_et);
             etWarningDecimal = dialog.findViewById(R.id.warning_dialog_et_decimal);
+            etWarningNumber = dialog.findViewById(R.id.warning_dialog_et_number);
             btCancel = dialog.findViewById(R.id.warning_dialog_cancel_bt);
             btOk = dialog.findViewById(R.id.warning_dialog_ok_bt);
             btCancel.setOnClickListener(v -> {
@@ -146,6 +149,7 @@ public class FastDialogBuilder {
             tvWarning.setVisibility(View.GONE);
             etWarning.setVisibility(View.GONE);
             etWarningDecimal.setVisibility(View.GONE);
+            etWarningNumber.setVisibility(View.GONE);
             btCancel.setVisibility(View.GONE);
             btOk.setVisibility(View.GONE);
         }
@@ -273,6 +277,7 @@ public class FastDialogBuilder {
         etWarning.setVisibility(View.VISIBLE);
         etWarning.setHint(hint);
         etWarningDecimal.setHint(hint);
+        etWarningNumber.setHint(hint);
         return this;
     }
     public FastDialogBuilder loginWithEmail(){
@@ -294,8 +299,18 @@ public class FastDialogBuilder {
     }
     public FastDialogBuilder decimalEditText(){
         etWarning.setVisibility(View.GONE);
+        etWarningNumber.setVisibility(View.GONE);
         etWarningDecimal.setVisibility(View.VISIBLE);
         isDecimal = true;
+        isNumber = false;
+        return this;
+    }
+    public FastDialogBuilder numberEditText(){
+        etWarning.setVisibility(View.GONE);
+        etWarningDecimal.setVisibility(View.GONE);
+        etWarningNumber.setVisibility(View.VISIBLE);
+        isDecimal = false;
+        isNumber = true;
         return this;
     }
     void positiveClickListener(PositiveClick click){
@@ -317,16 +332,20 @@ public class FastDialogBuilder {
     public FastDialogBuilder privateEditText(){
         etWarning.setTransformationMethod(PasswordTransformationMethod.getInstance());
         etWarningDecimal.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        etWarningNumber.setTransformationMethod(PasswordTransformationMethod.getInstance());
         return this;
     }
     public FastDialogBuilder setInputText(String str){
-        if (!isDecimal){
-            etWarning.setText(str);
-            etWarning.setSelection(etWarning.getText().length());
-        }
-        else{
+        if (isDecimal){
             etWarningDecimal.setText(str);
             etWarningDecimal.setSelection(etWarningDecimal.getText().length());
+        }else if (isNumber){
+            etWarningNumber.setText(str);
+            etWarningNumber.setSelection(etWarningNumber.getText().length());
+        }
+        else{
+            etWarning.setText(str);
+            etWarning.setSelection(etWarning.getText().length());
         }
 
         return this;
@@ -335,6 +354,7 @@ public class FastDialogBuilder {
     public FastDialogBuilder setTextMaxLength(int length){
         etWarning.setFilters(new InputFilter[] { new InputFilter.LengthFilter(length) });
         etWarningDecimal.setFilters(new InputFilter[] { new InputFilter.LengthFilter(length) });
+        etWarningNumber.setFilters(new InputFilter[] { new InputFilter.LengthFilter(length) });
         return this;
     }
 

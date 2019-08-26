@@ -60,11 +60,14 @@ public class FastDialog{
     public String getInputText(){
         ClearableEditText etWarning = builder.getDialog().findViewById(R.id.warning_dialog_et);
         ClearableEditText etWarningDecimal = builder.getDialog().findViewById(R.id.warning_dialog_et_decimal);
+        ClearableEditText etWarningNumber = builder.getDialog().findViewById(R.id.warning_dialog_et_number);
         String text = "";
         if (!etWarning.getText().toString().trim().equals("")){
             text = etWarning.getText().toString().trim();
         }else if(!etWarningDecimal.getText().toString().trim().equals("")){
             text =  etWarningDecimal.getText().toString().trim();
+        }else if (!etWarningNumber.getText().toString().trim().equals("")){
+            text = etWarningNumber.getText().toString().trim();
         }
         return text;
     }

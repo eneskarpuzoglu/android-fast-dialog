@@ -17,7 +17,7 @@
             android:padding="5dp"
             android:text="@string/warning"
             android:textColor="@color/text2"
-            android:textSize="15dp"
+            android:textSize="15sp"
             android:textStyle="bold" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/text"
                 android:gravity="center"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 android:padding="5dp"/>
         </LinearLayout>
         <karpuzoglu.enes.com.fastdialog.ClearableEditText
@@ -51,7 +51,7 @@
             android:background="@drawable/custom_edittext_dialog"
             android:padding="10dp"
             android:textColor="@color/text"
-            android:textSize="15dp" />
+            android:textSize="15sp" />
         <karpuzoglu.enes.com.fastdialog.ClearableEditText
             android:id="@+id/warning_dialog_et_decimal"
             android:layout_width="match_parent"
@@ -62,7 +62,18 @@
             android:padding="10dp"
             android:inputType="numberDecimal"
             android:textColor="@color/text"
-            android:textSize="15dp" />
+            android:textSize="15sp" />
+        <karpuzoglu.enes.com.fastdialog.ClearableEditText
+            android:id="@+id/warning_dialog_et_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/custom_edittext_dialog"
+            android:padding="10dp"
+            android:inputType="number"
+            android:textColor="@color/text"
+            android:textSize="15sp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,7 +84,7 @@
                 android:layout_height="55dp"
                 android:textColor="@color/text2"
                 android:layout_margin="15dp"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:text="@string/cancel"
                 android:textAllCaps="false"
                 android:layout_weight="1"/>
@@ -83,7 +94,7 @@
                 android:layout_height="55dp"
                 android:textColor="@color/text2"
                 android:layout_margin="15dp"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textAllCaps="false"
                 android:text="@string/ok"
                 android:layout_weight="1"/>
