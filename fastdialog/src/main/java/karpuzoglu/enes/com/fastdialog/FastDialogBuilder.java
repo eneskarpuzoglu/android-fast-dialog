@@ -299,7 +299,9 @@ public class FastDialogBuilder {
     }
     public FastDialogBuilder decimalEditText(){
         etWarning.setVisibility(View.GONE);
+        etWarning.setText("");
         etWarningNumber.setVisibility(View.GONE);
+        etWarningNumber.setText("");
         etWarningDecimal.setVisibility(View.VISIBLE);
         isDecimal = true;
         isNumber = false;
@@ -307,7 +309,9 @@ public class FastDialogBuilder {
     }
     public FastDialogBuilder numberEditText(){
         etWarning.setVisibility(View.GONE);
+        etWarning.setText("");
         etWarningDecimal.setVisibility(View.GONE);
+        etWarningDecimal.setText("");
         etWarningNumber.setVisibility(View.VISIBLE);
         isDecimal = false;
         isNumber = true;

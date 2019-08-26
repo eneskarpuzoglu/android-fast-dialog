@@ -3,6 +3,7 @@ package karpuzoglu.enes.com.fastdialog;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.view.View;
 import android.widget.TextView;
 
 import com.shawnlin.numberpicker.NumberPicker;
@@ -69,11 +70,11 @@ public class FastDialog{
         ClearableEditText etWarningDecimal = builder.getDialog().findViewById(R.id.warning_dialog_et_decimal);
         ClearableEditText etWarningNumber = builder.getDialog().findViewById(R.id.warning_dialog_et_number);
         String text = "";
-        if (!etWarning.getText().toString().trim().equals("")){
+        if (etWarning.getVisibility() == View.VISIBLE && !etWarning.getText().toString().trim().equals("")){
             text = etWarning.getText().toString().trim();
-        }else if(!etWarningDecimal.getText().toString().trim().equals("")){
+        }else if(etWarningDecimal.getVisibility() == View.VISIBLE && !etWarningDecimal.getText().toString().trim().equals("")){
             text =  etWarningDecimal.getText().toString().trim();
-        }else if (!etWarningNumber.getText().toString().trim().equals("")){
+        }else if (etWarningNumber.getVisibility() == View.VISIBLE && !etWarningNumber.getText().toString().trim().equals("")){
             text = etWarningNumber.getText().toString().trim();
         }
         return text;
