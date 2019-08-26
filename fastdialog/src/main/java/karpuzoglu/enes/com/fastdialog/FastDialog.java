@@ -41,6 +41,13 @@ public class FastDialog{
     public static FastDialogBuilder n(Context context){
         return new FastDialogBuilder(context,Type.NUMBER_PICKER);
     }
+    public void setBuilder(FastDialogBuilder builder) {
+        this.builder = builder;
+    }
+
+    public FastDialogBuilder getBuilder() {
+        return builder;
+    }
     public void show(){
         if (builder.getDialog().isShowing()) return;
         builder.getDialog().show();
