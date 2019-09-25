@@ -56,6 +56,8 @@ Provides you easily create various pop-up dialogs that you can use.
 	 cancelable(boolean bool) // set cancelable to fast-dialog
 	 decimalEditText() // set EditText to decimalEditText
 	 numberEditText() // set EditText to numberEditText
+	 numberUsername() // set Username edittext input type to number
+	 numberPassword() // set Password edittext input type to number
 	 setTextMaxLength(int length) // set EditText max length
 	 setMinValue(int min) // set number picker minimum value
 	 setMaxValue(int max) // set number picker maximum value

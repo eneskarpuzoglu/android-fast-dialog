@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         dialog = new FastDialogBuilder(this,Type.LOGIN)
                 //.loginWithEmail()
                 .setTitleText("Login")
+                .numberUsername()
+                .numberPassword()
+                .setText("Login warn text | Login warn text ")
                 .changeColor(ContextCompat.getColor(getApplicationContext(),R.color.different),
                         ContextCompat.getColor(getApplicationContext(),R.color.text2),
                         ContextCompat.getColor(getApplicationContext(),R.color.text))

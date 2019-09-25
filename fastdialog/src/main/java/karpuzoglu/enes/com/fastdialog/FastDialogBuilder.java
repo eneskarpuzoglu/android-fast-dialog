@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.InputFilter;
+import android.text.InputType;
 import android.text.method.PasswordTransformationMethod;
 import android.view.Gravity;
 import android.view.View;
@@ -74,6 +75,7 @@ public class FastDialogBuilder {
             tvTitle = dialog.findViewById(R.id.login_dialog_title);
             etUsername = dialog.findViewById(R.id.login_dialog_username);
             etPassword = dialog.findViewById(R.id.login_dialog_password);
+            tvWarning = dialog.findViewById(R.id.login_dialog_text);
             Drawable imgPassword = context.getResources().getDrawable(R.drawable.ic_password_black);
             imgPassword.setBounds(0, 0, 45, 45);
             etPassword.setCompoundDrawables(imgPassword, null, null, null);
@@ -285,6 +287,14 @@ public class FastDialogBuilder {
         Drawable img = context.getResources().getDrawable( R.drawable.ic_email_black );
         img.setBounds( 0, 0, 45, 45 );
         etUsername.setCompoundDrawables(img,null,null,null);
+        return this;
+    }
+    public FastDialogBuilder numberPassword(){
+        etPassword.setInputType(InputType.TYPE_CLASS_NUMBER|InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+        return this;
+    }
+    public FastDialogBuilder numberUsername(){
+        etUsername.setInputType(InputType.TYPE_CLASS_NUMBER);
         return this;
     }
     public FastDialogBuilder negativeText(String negative){

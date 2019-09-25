@@ -19,6 +19,16 @@
             android:textColor="@color/text2"
             android:textSize="15dp"
             android:textStyle="bold" />
+        <TextView
+            android:id="@+id/login_dialog_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:visibility="gone"
+            android:textSize="15dp"/>
         <karpuzoglu.enes.com.fastdialog.ClearableEditText
             android:id="@+id/login_dialog_username"
             android:layout_width="match_parent"
