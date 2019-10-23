@@ -114,12 +114,12 @@ public class FastDialogBuilder {
             btCancel.setOnClickListener(v -> {
                 if(negativeClick != null)
                     negativeClick.onClick(v);
-                dialog.dismiss();
+                else dialog.dismiss();
             });
             btOk.setOnClickListener(v -> {
                 if(positiveClick != null)
                     positiveClick.onClick(v);
-                dialog.dismiss();
+                else dialog.dismiss();
             });
             btOk.setBackground(getShape());
             btCancel.setBackground(getShape());
@@ -136,12 +136,12 @@ public class FastDialogBuilder {
             btCancel.setOnClickListener(v -> {
                 if(negativeClick != null)
                     negativeClick.onClick(v);
-                dialog.dismiss();
+                else dialog.dismiss();
             });
             btOk.setOnClickListener(v -> {
                 if(positiveClick != null)
                     positiveClick.onClick(v);
-                dialog.dismiss();
+                else dialog.dismiss();
             });
             btOk.setBackground(getShape());
             btCancel.setBackground(getShape());
