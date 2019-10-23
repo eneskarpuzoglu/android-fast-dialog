@@ -45,10 +45,10 @@ Provides you easily create various pop-up dialogs that you can use.
 	
 > FastDialogBuilder Functions
 ```java
-	 progressText(String progressString) // sets progress dialog text
+	 progressText(String progressString) // set progress dialog text
 	 setTitleText(String title) // set fast-dialog title
 	 hideTitle() //hide title
-	 hideIcon() // hide to ImageView gif on fast-dialog
+	 hideIcon() // hide to danger gif on fast-dialog
 	 setText(String text) // set fast-dialog TextView
 	 setHint(String hint) // set fast-dialog EditText's hint
 	 negativeText(String negative) // set negative button on fast-dialog and set button text
