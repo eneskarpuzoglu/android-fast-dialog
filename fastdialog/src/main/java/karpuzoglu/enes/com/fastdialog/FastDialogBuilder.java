@@ -317,6 +317,9 @@ public class FastDialogBuilder {
         isNumber = false;
         return this;
     }
+    public TextView getTvWarning(){
+        return tvWarning;
+    }
     public FastDialogBuilder numberEditText(){
         etWarning.setVisibility(View.GONE);
         etWarning.setText("");
@@ -347,6 +350,16 @@ public class FastDialogBuilder {
         etWarning.setTransformationMethod(PasswordTransformationMethod.getInstance());
         etWarningDecimal.setTransformationMethod(PasswordTransformationMethod.getInstance());
         etWarningNumber.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        return this;
+    }
+    public FastDialogBuilder setTextGravity(GravityType gravity){
+        if (gravity == GravityType.CENTER) {
+            tvWarning.setGravity(Gravity.CENTER);
+        }else if (gravity == GravityType.START){
+            tvWarning.setGravity(Gravity.START);
+        }else if (gravity == GravityType.END){
+            tvWarning.setGravity(Gravity.END);
+        }
         return this;
     }
     public FastDialogBuilder setInputText(String str){

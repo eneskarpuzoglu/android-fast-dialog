@@ -42,6 +42,10 @@ Provides you easily create various pop-up dialogs that you can use.
 -  LOGIN
 -  FOLDER
 -  NUMBER_PICKER
+> Gravity Types
+-  CENTER
+-  START
+-  END
 	
 > FastDialogBuilder Functions
 ```java
@@ -50,6 +54,7 @@ Provides you easily create various pop-up dialogs that you can use.
 	 hideTitle() //hide title
 	 hideIcon() // hide to danger gif on fast-dialog
 	 setText(String text) // set fast-dialog TextView
+	 setTextGravity(GravityType type) // set fast-dialog warn text gravity 
 	 setHint(String hint) // set fast-dialog EditText's hint
 	 negativeText(String negative) // set negative button on fast-dialog and set button text
 	 positiveText(String positive) // set positive button on fast-dialog and set button text
