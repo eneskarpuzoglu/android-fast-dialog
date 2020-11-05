@@ -179,10 +179,10 @@ public class FastDialogBuilder {
             shape.setColor(ContextCompat.getColor(context,R.color.warning));
             shape.setStroke(3, ContextCompat.getColor(context,R.color.warning));
         }else{
-            tvTitle.setBackgroundColor(ContextCompat.getColor(context,R.color.primary));
+            tvTitle.setBackgroundColor(ContextCompat.getColor(context,R.color.colorPrimary));
             tvTitle.setText(context.getResources().getString(R.string.dialog));
-            shape.setColor(ContextCompat.getColor(context,R.color.primary));
-            shape.setStroke(3, ContextCompat.getColor(context,R.color.primary));
+            shape.setColor(ContextCompat.getColor(context,R.color.colorPrimary));
+            shape.setStroke(3, ContextCompat.getColor(context,R.color.colorPrimary));
        }
 
         return shape;
