@@ -189,28 +189,28 @@ public class FastDialogBuilder {
     }
     public FastDialogBuilder changeColor(int colorItem,int colorItemText,int colorText){
         if (folderLayout != null) {
-            folderLayout.setBackgroundColor(colorItem);
+            folderLayout.setBackgroundColor(ContextCompat.getColor(context,colorItem));
         }else{
-            tvTitle.setBackgroundColor(colorItem);
-            tvTitle.setTextColor(colorItemText);
+            tvTitle.setBackgroundColor(ContextCompat.getColor(context,colorItem));
+            tvTitle.setTextColor(ContextCompat.getColor(context,colorItemText));
             if (type != Type.LOGIN && type != Type.FOLDER){
-                tvWarning.setTextColor(colorText);
+                tvWarning.setTextColor(ContextCompat.getColor(context,colorText));
             }
             if (type == Type.NUMBER_PICKER && numberPicker != null){
-                numberPicker.setSelectedTextColor(colorItem);
-                numberPicker.setDividerColor(colorItem);
+                numberPicker.setSelectedTextColor(ContextCompat.getColor(context,colorItem));
+                numberPicker.setDividerColor(ContextCompat.getColor(context,colorItem));
             }
             GradientDrawable shape =  new GradientDrawable();
             shape.setShape(GradientDrawable.RECTANGLE);
             //shape.setCornerRadii(new float[] { 20,20,20,20,20,20,20,20 });
             shape.setCornerRadius(20);
-            shape.setColor(colorItem);
-            shape.setStroke(3, colorItem);
+            shape.setColor(ContextCompat.getColor(context,colorItem));
+            shape.setStroke(3, ContextCompat.getColor(context,colorItem));
 
             btCancel.setBackground(shape);
             btOk.setBackground(shape);
-            btCancel.setTextColor(colorItemText);
-            btOk.setTextColor(colorItemText);
+            btCancel.setTextColor(ContextCompat.getColor(context,colorItemText));
+            btOk.setTextColor(ContextCompat.getColor(context,colorItemText));
         }
         return this;
     }

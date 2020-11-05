@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
                 .numberUsername()
                 .numberPassword()
                 .setText("Login warn text | Login warn text ")
-                .changeColor(ContextCompat.getColor(getApplicationContext(),R.color.different),
-                        ContextCompat.getColor(getApplicationContext(),R.color.text2),
-                        ContextCompat.getColor(getApplicationContext(),R.color.text))
+                .changeColor(R.color.different,
+                        R.color.text2,
+                        R.color.text)
                 .create();
         dialog.positiveClickListener(view1 -> {
             String string = dialog.getUsernameOrEmail() +" - "+dialog.getPassword();
@@ -83,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
         dialog = new FastDialogBuilder(this,Type.NUMBER_PICKER)
                 .setText("Choice Number")
                 .setAnimation(Animations.SLIDE_TOP)
-                .changeColor(ContextCompat.getColor(getApplicationContext(),R.color.different),
-                        ContextCompat.getColor(getApplicationContext(),R.color.text2),
-                        ContextCompat.getColor(getApplicationContext(),R.color.text))
+                .changeColor(R.color.different,
+                        R.color.text2,
+                        R.color.text)
                 .positiveText("Ok")
                 .negativeText("Cancel")
                 .setMaxValue(15)
@@ -121,9 +121,9 @@ public class MainActivity extends AppCompatActivity {
                 .setText("Warning Text")
                 .positiveText("Ok")
                 .negativeText("Cancel")
-                .changeColor(ContextCompat.getColor(getApplicationContext(),R.color.different),
-                        ContextCompat.getColor(getApplicationContext(),R.color.text2),
-                        ContextCompat.getColor(getApplicationContext(),R.color.text))
+                .changeColor(R.color.different,
+                        R.color.text2,
+                        R.color.text)
                 .setHint("please enter your name")
                 .setAnimation(Animations.SLIDE_TOP)
                 .setPosition(Positions.TOP)
