@@ -12,11 +12,11 @@
             android:id="@+id/login_dialog_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/primary"
+            android:textColor="?colorOnPrimary"
             android:gravity="center"
             android:padding="5dp"
             android:text="@string/login"
-            android:textColor="@color/text2"
+            android:background="?colorPrimaryDark"
             android:textSize="15dp"
             android:textStyle="bold" />
         <TextView
@@ -38,7 +38,6 @@
             android:background="@drawable/custom_edittext_dialog"
             android:inputType="textEmailAddress"
             android:padding="10dp"
-            android:textColor="@color/text"
             android:textSize="15dp" />
         <karpuzoglu.enes.com.fastdialog.ClearableEditText
             android:id="@+id/login_dialog_password"
@@ -50,7 +49,6 @@
             android:background="@drawable/custom_edittext_dialog"
             android:padding="10dp"
             android:inputType="textPassword"
-            android:textColor="@color/text"
             android:textSize="15dp" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,7 +58,7 @@
                 android:id="@+id/warning_dialog_cancel_bt"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:textColor="@color/text2"
+                android:textColor="?colorOnPrimary"
                 android:layout_margin="15dp"
                 android:textSize="20dp"
                 android:text="@string/cancel"
@@ -70,7 +68,7 @@
                 android:id="@+id/warning_dialog_ok_bt"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
-                android:textColor="@color/text2"
+                android:textColor="?colorOnPrimary"
                 android:layout_margin="15dp"
                 android:textSize="20dp"
                 android:textAllCaps="false"
