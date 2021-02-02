@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:padding="10dp"
         android:orientation="vertical"
-        android:background="?colorPrimaryDark"
+        android:background="@color/primary"
         >
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/folder_recylerview"

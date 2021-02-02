@@ -179,38 +179,38 @@ public class FastDialogBuilder {
             shape.setColor(ContextCompat.getColor(context,R.color.warning));
             shape.setStroke(3, ContextCompat.getColor(context,R.color.warning));
         }else{
-            tvTitle.setBackgroundColor(ContextCompat.getColor(context,R.color.colorPrimary));
+            tvTitle.setBackgroundColor(ContextCompat.getColor(context,R.color.primary));
             tvTitle.setText(context.getResources().getString(R.string.dialog));
-            shape.setColor(ContextCompat.getColor(context,R.color.colorPrimary));
-            shape.setStroke(3, ContextCompat.getColor(context,R.color.colorPrimary));
+            shape.setColor(ContextCompat.getColor(context,R.color.primary));
+            shape.setStroke(3, ContextCompat.getColor(context,R.color.primary));
        }
 
         return shape;
     }
     public FastDialogBuilder changeColor(int colorItem,int colorItemText,int colorText){
         if (folderLayout != null) {
-            folderLayout.setBackgroundColor(ContextCompat.getColor(context,colorItem));
+            folderLayout.setBackgroundColor(colorItem);
         }else{
-            tvTitle.setBackgroundColor(ContextCompat.getColor(context,colorItem));
-            tvTitle.setTextColor(ContextCompat.getColor(context,colorItemText));
+            tvTitle.setBackgroundColor(colorItem);
+            tvTitle.setTextColor(colorItemText);
             if (type != Type.LOGIN && type != Type.FOLDER){
-                tvWarning.setTextColor(ContextCompat.getColor(context,colorText));
+                tvWarning.setTextColor(colorText);
             }
             if (type == Type.NUMBER_PICKER && numberPicker != null){
-                numberPicker.setSelectedTextColor(ContextCompat.getColor(context,colorItem));
-                numberPicker.setDividerColor(ContextCompat.getColor(context,colorItem));
+                numberPicker.setSelectedTextColor(colorItem);
+                numberPicker.setDividerColor(colorItem);
             }
             GradientDrawable shape =  new GradientDrawable();
             shape.setShape(GradientDrawable.RECTANGLE);
             //shape.setCornerRadii(new float[] { 20,20,20,20,20,20,20,20 });
             shape.setCornerRadius(20);
-            shape.setColor(ContextCompat.getColor(context,colorItem));
-            shape.setStroke(3, ContextCompat.getColor(context,colorItem));
+            shape.setColor(colorItem);
+            shape.setStroke(3, colorItem);
 
             btCancel.setBackground(shape);
             btOk.setBackground(shape);
-            btCancel.setTextColor(ContextCompat.getColor(context,colorItemText));
-            btOk.setTextColor(ContextCompat.getColor(context,colorItemText));
+            btCancel.setTextColor(colorItemText);
+            btOk.setTextColor(colorItemText);
         }
         return this;
     }

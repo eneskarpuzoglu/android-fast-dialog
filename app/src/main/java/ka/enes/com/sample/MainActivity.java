@@ -1,8 +1,6 @@
 package ka.enes.com.sample;
 
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
@@ -25,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
     }
     public void progress(View view){
         FastDialog.p(this).progressText("Please Wait!").create().show();
@@ -45,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
                 .numberUsername()
                 .numberPassword()
                 .setText("Login warn text | Login warn text ")
-                .changeColor(R.color.different,
-                        R.color.text2,
-                        R.color.text)
+                .changeColor(ContextCompat.getColor(getApplicationContext(),R.color.different),
+                        ContextCompat.getColor(getApplicationContext(),R.color.text2),
+                        ContextCompat.getColor(getApplicationContext(),R.color.text))
                 .create();
         dialog.positiveClickListener(view1 -> {
             String string = dialog.getUsernameOrEmail() +" - "+dialog.getPassword();
@@ -86,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
         dialog = new FastDialogBuilder(this,Type.NUMBER_PICKER)
                 .setText("Choice Number")
                 .setAnimation(Animations.SLIDE_TOP)
-                .changeColor(R.color.different,
-                        R.color.text2,
-                        R.color.text)
+                .changeColor(ContextCompat.getColor(getApplicationContext(),R.color.different),
+                        ContextCompat.getColor(getApplicationContext(),R.color.text2),
+                        ContextCompat.getColor(getApplicationContext(),R.color.text))
                 .positiveText("Ok")
                 .negativeText("Cancel")
                 .setMaxValue(15)
@@ -124,9 +121,9 @@ public class MainActivity extends AppCompatActivity {
                 .setText("Warning Text")
                 .positiveText("Ok")
                 .negativeText("Cancel")
-                .changeColor(R.color.different,
-                        R.color.text2,
-                        R.color.text)
+                .changeColor(ContextCompat.getColor(getApplicationContext(),R.color.different),
+                        ContextCompat.getColor(getApplicationContext(),R.color.text2),
+                        ContextCompat.getColor(getApplicationContext(),R.color.text))
                 .setHint("please enter your name")
                 .setAnimation(Animations.SLIDE_TOP)
                 .setPosition(Positions.TOP)
